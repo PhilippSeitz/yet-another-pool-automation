@@ -25,6 +25,12 @@
     "pool-client-e2e": {
       "tags": [],
       "implicitDependencies": ["pool-client"]
+    },
+    "view-dashboard": {
+      "tags": []
+    },
+    "view-shared": {
+      "tags": []
     }
   }
 }

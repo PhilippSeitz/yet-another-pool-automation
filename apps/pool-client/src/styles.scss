@@ -1,3 +1,17 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+html {
+  @apply h-full;
+  @apply bg-gray-200;
+  @apply text-gray-800;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply text-gray-700;
+  }
+}

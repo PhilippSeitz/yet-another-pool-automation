@@ -129,6 +129,66 @@
           }
         }
       }
+    },
+    "view-dashboard": {
+      "projectType": "library",
+      "root": "libs/view/dashboard",
+      "sourceRoot": "libs/view/dashboard/src",
+      "prefix": "pool",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/view/dashboard/tsconfig.lib.json",
+              "libs/view/dashboard/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/view/dashboard/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/view/dashboard/jest.config.js",
+            "tsConfig": "libs/view/dashboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/view/dashboard/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "view-shared": {
+      "projectType": "library",
+      "root": "libs/view/shared",
+      "sourceRoot": "libs/view/shared/src",
+      "prefix": "pool",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/view/shared/tsconfig.lib.json",
+              "libs/view/shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/view/shared/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/view/shared/jest.config.js",
+            "tsConfig": "libs/view/shared/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/view/shared/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
