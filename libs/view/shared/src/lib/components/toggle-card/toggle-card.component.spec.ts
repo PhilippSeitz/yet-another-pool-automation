@@ -8,9 +8,8 @@ describe('ToggleCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToggleCardComponent ]
-    })
-    .compileComponents();
+      declarations: [ToggleCardComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

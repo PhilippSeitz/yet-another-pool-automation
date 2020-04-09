@@ -10,8 +10,8 @@ import { ViewSharedModule } from '@pool/view/shared';
     RouterModule.forChild([
       { path: '', pathMatch: 'full', component: DashboardComponent }
     ]),
-    ViewSharedModule,
+    ViewSharedModule
   ],
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent]
 })
 export class ViewDashboardModule {}

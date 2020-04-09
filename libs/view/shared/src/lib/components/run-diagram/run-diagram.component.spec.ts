@@ -8,9 +8,8 @@ describe('RunDiagramComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RunDiagramComponent ]
-    })
-    .compileComponents();
+      declarations: [RunDiagramComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
