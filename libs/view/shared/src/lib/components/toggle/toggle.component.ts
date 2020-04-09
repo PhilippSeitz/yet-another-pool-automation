@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'pool-toggle',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./toggle.component.scss']
 })
 export class ToggleComponent implements OnInit {
+  @Input() checked: boolean;
+  
   constructor() {}
 
   ngOnInit(): void {}

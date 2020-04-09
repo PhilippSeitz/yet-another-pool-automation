@@ -1,9 +1,10 @@
 <div
   class="bg-white p-4 rounded shadow-lg mb-6 flex flex-wrap justify-between items-center"
+  (click)="click($event)"
 >
   <div>
     <h3 class="text-xs text-gray-400 font-bold m-0 uppercase">STATUS</h3>
     <h2 class="font-bold text-lg">Pumpe</h2>
   </div>
-  <pool-toggle></pool-toggle>
+  <pool-toggle [checked]="checked"></pool-toggle>
 </div>
