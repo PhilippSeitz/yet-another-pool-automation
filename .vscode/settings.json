@@ -7,7 +7,8 @@
         "activityBar.inactiveForeground": "#15202b99",
         "statusBar.background": "#138d54",
         "statusBarItem.hoverBackground": "#19ba6f",
-        "statusBar.foreground": "#e7e7e7"
+        "statusBar.foreground": "#e7e7e7",
+        "statusBar.border": "#138d54"
     },
     "peacock.color": "#138d54"
 }

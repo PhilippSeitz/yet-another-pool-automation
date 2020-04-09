@@ -3,9 +3,11 @@
 @import 'tailwindcss/utilities';
 
 html {
-  @apply h-full;
-  @apply bg-gray-200;
-  @apply text-gray-800;
+  @apply h-full overflow-hidden bg-gray-100 text-gray-800;
+
+  body {
+    @apply h-full overflow-auto;
+  }
 
   h1,
   h2,
@@ -13,5 +15,13 @@ html {
   h4,
   h5 {
     @apply text-gray-700;
+  }
+
+  * {
+    user-select: none;
+  }
+
+  *:focus {
+      outline: none;
   }
 }
