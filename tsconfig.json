@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@pool/view/dashboard": ["libs/view/dashboard/src/index.ts"],
-      "@pool/view/shared": ["libs/view/shared/src/index.ts"]
+      "@pool/view/shared": ["libs/view/shared/src/index.ts"],
+      "@pool/state/controls": ["libs/state/controls/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
