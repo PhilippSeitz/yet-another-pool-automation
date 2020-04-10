@@ -3,8 +3,8 @@
   (click)="click($event)"
 >
   <div>
-    <h3 class="text-xs text-gray-400 font-bold m-0 uppercase">STATUS</h3>
-    <h2 class="font-bold text-lg">Pumpe</h2>
+    <h3 class="text-xs text-gray-400 font-bold m-0 uppercase">Status</h3>
+    <h2 class="font-bold text-lg">{{ control.name }}</h2>
   </div>
-  <pool-toggle [checked]="checked"></pool-toggle>
+  <pool-toggle [checked]="control.on"></pool-toggle>
 </div>

@@ -1,5 +1,8 @@
 <section class="pt-6 p-4">
-  <pool-toggle-card *ngFor="let card of [].constructor(4)"></pool-toggle-card>
+  <pool-toggle-card
+    [control]="control"
+    *ngFor="let control of controls$ | async"
+  ></pool-toggle-card>
 </section>
 <section class="pt-2 mt-40 p-4 bg-blue-400">
   <div class="p-4 bg-gray-900 rounded shadow-lg pb-64 -mt-40">
@@ -9,7 +12,12 @@
     </div>
   </div>
 
-  <div class="bg-white p-4 mt-6 w-1/2 rounded">
-    Pause
+  <div class="flex -mx-2">
+    <div class="bg-white font-bold p-4 mt-6 w-full rounded mx-2">
+      Anschalten
+    </div>
+    <div class="bg-white font-bold p-4 mt-6 w-full rounded mx-2">
+      Pause
+    </div>
   </div>
 </section>

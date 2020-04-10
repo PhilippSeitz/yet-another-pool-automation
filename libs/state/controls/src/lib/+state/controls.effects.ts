@@ -21,7 +21,14 @@ export class ControlsEffects implements OnInitEffects {
       fetch({
         run: action => {
           // Your custom service 'load' logic goes here. For now just return a success action...
-          return ControlsActions.loadControlsSuccess({ controls: [] });
+          return ControlsActions.loadControlsSuccess({
+            controls: [
+              { id: '1', name: 'Pumpe', on: false },
+              { id: '2', name: 'Licht', on: true },
+              { id: '3', name: 'Pool Licht', on: false },
+              { id: '4', name: 'Gegenstromanlage', on: true }
+            ]
+          });
         },
 
         onError: (action, error) => {
