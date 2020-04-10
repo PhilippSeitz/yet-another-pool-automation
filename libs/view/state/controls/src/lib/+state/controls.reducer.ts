@@ -37,7 +37,10 @@ const controlsReducer = createReducer(
   on(ControlsActions.loadControlsFailure, (state, { error }) => ({
     ...state,
     error
-  }))
+  })),
+  on(ControlsActions.updateControl, (state, { update }) =>
+    controlsAdapter.updateOne({ id: update.id, changes: update }, { ...state })
+  )
 );
 
 export function reducer(state: State | undefined, action: Action) {

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
+import { Subject, Observable } from 'rxjs';
+import { ControlUpdate } from '@pool/data';
 
 export const environment = {
   production: false,
@@ -11,15 +13,24 @@ export const environment = {
 })
 export class ControlSocketService {
   socket: SocketIOClient.Socket;
-
-  constructor() {
-    console.log('huhu');
-    this.setupSocketConnection();
+  get update$(): Observable<ControlUpdate> {
+    return this._update$;
   }
 
-  setupSocketConnection() {
-    this.socket = io(environment.SOCKET_ENDPOINT);
+  private _update$ = new Subject<ControlUpdate>();
 
-    this.socket.emit('message', 'Hello there from Angular.');
+  constructor() {
+    this.setupSocket();
+  }
+
+  setupSocket() {
+    this.socket = io(environment.SOCKET_ENDPOINT);
+    this.socket.on('update', (message: ControlUpdate) =>
+      this._update$.next(message)
+    );
+  }
+
+  toggle(update: ControlUpdate) {
+    this.socket.emit('toggle', update);
   }
 }

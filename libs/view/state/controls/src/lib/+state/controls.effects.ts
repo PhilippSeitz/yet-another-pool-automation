@@ -7,12 +7,14 @@ import {
   OnInitEffects
 } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
-import { tap } from 'rxjs/operators';
+import { tap, map, withLatestFrom, flatMap } from 'rxjs/operators';
 
 import * as fromControls from './controls.reducer';
 import * as ControlsActions from './controls.actions';
 import { Action } from '@ngrx/store';
 import { ControlSocketService } from '../services/control-socket.service';
+import { ControlsFacade } from './controls.facade';
+import { of } from 'rxjs';
 
 @Injectable()
 export class ControlsEffects implements OnInitEffects {
@@ -40,18 +42,30 @@ export class ControlsEffects implements OnInitEffects {
     )
   );
 
-  init$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(ROOT_EFFECTS_INIT),
-        tap(() => console.log('wuhu'))
+  toggle$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ControlsActions.toggleControl),
+      flatMap(action =>
+        of(action).pipe(
+          withLatestFrom(this.controlFacade.selectControlById(action.id)),
+          map(([_, control]) => ({ ...control, on: !control.on }))
+        )
       ),
-    { dispatch: false }
+      tap(control => this.controlSocketService.toggle(control)),
+      map(update => ControlsActions.updateControl({ update }))
+    )
+  );
+
+  update$ = createEffect(() =>
+    this.controlSocketService.update$.pipe(
+      map(update => ControlsActions.updateControl({ update }))
+    )
   );
 
   constructor(
     private actions$: Actions,
-    private controlSocketService: ControlSocketService
+    private controlSocketService: ControlSocketService,
+    private controlFacade: ControlsFacade
   ) {}
 
   ngrxOnInitEffects(): Action {

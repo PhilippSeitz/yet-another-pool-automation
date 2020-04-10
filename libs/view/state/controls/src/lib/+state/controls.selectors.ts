@@ -5,6 +5,8 @@ import {
   ControlsPartialState,
   controlsAdapter
 } from './controls.reducer';
+import { Dictionary } from '@ngrx/entity';
+import { Control } from '@pool/data';
 
 // Lookup the 'Controls' feature state managed by NgRx
 export const getControlsState = createFeatureSelector<
@@ -33,13 +35,7 @@ export const getControlsEntities = createSelector(
   (state: State) => selectEntities(state)
 );
 
-export const getSelectedId = createSelector(
-  getControlsState,
-  (state: State) => state.selectedId
-);
-
-export const getSelected = createSelector(
+export const getControlById = createSelector(
   getControlsEntities,
-  getSelectedId,
-  (entities, selectedId) => selectedId && entities[selectedId]
+  (entities: Dictionary<Control>, { id }: { id: string }) => entities[id]
 );

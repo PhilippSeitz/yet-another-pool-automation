@@ -12,4 +12,8 @@ export class DashboardComponent implements OnInit {
   constructor(private controlsFacade: ControlsFacade) {}
 
   ngOnInit(): void {}
+
+  toggle(id: string) {
+    this.controlsFacade.toggleControl(id);
+  }
 }
