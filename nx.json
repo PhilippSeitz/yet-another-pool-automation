@@ -37,6 +37,9 @@
     },
     "pool-server": {
       "tags": []
+    },
+    "data": {
+      "tags": []
     }
   }
 }
