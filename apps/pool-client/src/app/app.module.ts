@@ -37,7 +37,7 @@ const routes: Routes = [
     !environment.production
       ? StoreDevtoolsModule.instrument({ name: 'Pool Client' })
       : [],
-    StoreRouterConnectingModule.forRoot(),
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -221,6 +221,61 @@
           "style": "less"
         }
       }
+    },
+    "pool-server": {
+      "root": "apps/pool-server",
+      "sourceRoot": "apps/pool-server/src",
+      "projectType": "application",
+      "prefix": "pool-server",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/pool-server",
+            "main": "apps/pool-server/src/main.ts",
+            "tsConfig": "apps/pool-server/tsconfig.app.json",
+            "assets": ["apps/pool-server/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/pool-server/src/environments/environment.ts",
+                  "with": "apps/pool-server/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "pool-server:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/pool-server/tsconfig.app.json",
+              "apps/pool-server/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/pool-server/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/pool-server/jest.config.js",
+            "tsConfig": "apps/pool-server/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
