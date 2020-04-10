@@ -1,4 +1,8 @@
-import { SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
+import {
+  SubscribeMessage,
+  WebSocketGateway,
+  WebSocketServer
+} from '@nestjs/websockets';
 import { Socket } from 'net';
 import { Control, ControlUpdate } from '@pool/data';
 
@@ -11,9 +15,11 @@ const controls: Control[] = [
 
 @WebSocketGateway()
 export class ControlsGateway {
+  @WebSocketServer() server: Socket;
+
   @SubscribeMessage('toggle')
   handleToggle(client: Socket, data: ControlUpdate) {
-    client.emit('update', data);
-    console.log(data);
+    client.emit('ackn', data);
+    this.server.emit('update', data);
   }
 }

@@ -2,7 +2,7 @@
   <pool-toggle-card
     [control]="control"
     (toggle)="toggle(control.id)"
-    *ngFor="let control of controls$ | async"
+    *ngFor="let control of controls$ | async; trackBy: trackBy"
   ></pool-toggle-card>
 </section>
 <section class="pt-2 mt-40 p-4 bg-blue-400">

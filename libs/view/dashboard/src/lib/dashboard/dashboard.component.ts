@@ -16,4 +16,8 @@ export class DashboardComponent implements OnInit {
   toggle(id: string) {
     this.controlsFacade.toggleControl(id);
   }
+
+  trackBy(index: number) {
+    return index;
+  }
 }
