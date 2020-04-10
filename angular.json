@@ -190,29 +190,29 @@
         }
       }
     },
-    "state-controls": {
+    "view-state-controls": {
       "projectType": "library",
-      "root": "libs/state/controls",
-      "sourceRoot": "libs/state/controls/src",
+      "root": "libs/view/state/controls",
+      "sourceRoot": "libs/view/state/controls/src",
       "prefix": "pool",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/state/controls/tsconfig.lib.json",
-              "libs/state/controls/tsconfig.spec.json"
+              "libs/view/state/controls/tsconfig.lib.json",
+              "libs/view/state/controls/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/state/controls/**"]
+            "exclude": ["**/node_modules/**", "!libs/view/state/controls/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/state/controls/jest.config.js",
-            "tsConfig": "libs/state/controls/tsconfig.spec.json",
+            "jestConfig": "libs/view/state/controls/jest.config.js",
+            "tsConfig": "libs/view/state/controls/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "libs/state/controls/src/test-setup.ts"
+            "setupFile": "libs/view/state/controls/src/test-setup.ts"
           }
         }
       },
@@ -298,6 +298,32 @@
           "options": {
             "jestConfig": "libs/data/jest.config.js",
             "tsConfig": "libs/data/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "server-controls": {
+      "root": "libs/server/controls",
+      "sourceRoot": "libs/server/controls/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/server/controls/tsconfig.lib.json",
+              "libs/server/controls/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/server/controls/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/server/controls/jest.config.js",
+            "tsConfig": "libs/server/controls/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }

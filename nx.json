@@ -32,13 +32,16 @@
     "view-shared": {
       "tags": []
     },
-    "state-controls": {
+    "view-state-controls": {
       "tags": []
     },
     "pool-server": {
       "tags": []
     },
     "data": {
+      "tags": []
+    },
+    "server-controls": {
       "tags": []
     }
   }

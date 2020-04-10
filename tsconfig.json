@@ -19,7 +19,8 @@
       "@pool/view/dashboard": ["libs/view/dashboard/src/index.ts"],
       "@pool/view/shared": ["libs/view/shared/src/index.ts"],
       "@pool/view/state/controls": ["libs/view/state/controls/src/index.ts"],
-      "@pool/data": ["libs/data/src/index.ts"]
+      "@pool/data": ["libs/data/src/index.ts"],
+      "@pool/server/controls": ["libs/server/controls/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

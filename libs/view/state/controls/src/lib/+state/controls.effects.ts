@@ -12,6 +12,7 @@ import { tap } from 'rxjs/operators';
 import * as fromControls from './controls.reducer';
 import * as ControlsActions from './controls.actions';
 import { Action } from '@ngrx/store';
+import { ControlSocketService } from '../services/control-socket.service';
 
 @Injectable()
 export class ControlsEffects implements OnInitEffects {
@@ -48,7 +49,10 @@ export class ControlsEffects implements OnInitEffects {
     { dispatch: false }
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(
+    private actions$: Actions,
+    private controlSocketService: ControlSocketService
+  ) {}
 
   ngrxOnInitEffects(): Action {
     return ControlsActions.loadControls();

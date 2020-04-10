@@ -5,6 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import * as fromControls from './+state/controls.reducer';
 import { ControlsEffects } from './+state/controls.effects';
 import { ControlsFacade } from './+state/controls.facade';
+import { ControlSocketService } from './services/control-socket.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ControlsFacade } from './+state/controls.facade';
     ),
     EffectsModule.forFeature([ControlsEffects])
   ],
-  providers: [ControlsFacade]
+  providers: [ControlsFacade, ControlSocketService]
 })
 export class StateControlsModule {}
