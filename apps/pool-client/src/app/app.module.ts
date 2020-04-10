@@ -8,7 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { StateControlsModule } from '@pool/state/controls';
+import { StateControlsModule } from '@pool/view/state/controls';
 
 const routes: Routes = [
   {

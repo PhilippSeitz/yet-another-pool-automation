@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ControlsEntity } from '@pool/state/controls';
+import { ControlsEntity } from '@pool/view/state/controls';
 
 @Component({
   selector: 'pool-toggle-card',

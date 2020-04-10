@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlsFacade } from '@pool/state/controls';
+import { ControlsFacade } from '@pool/view/state/controls';
 
 @Component({
   selector: 'pool-dashboard',
