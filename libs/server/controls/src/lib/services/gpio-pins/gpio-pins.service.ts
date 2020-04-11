@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Control } from '@pool/data';
 
 const controlMap: Map<string, Control> = [
@@ -10,12 +10,14 @@ const controlMap: Map<string, Control> = [
 
 @Injectable()
 export class GpioPinsService {
+  constructor(private logger: Logger) {
+    this.logger.setContext('GpioPins');
+  }
   private print() {
-    console.log(
-      [...controlMap.values()].reduce(
-        (str, val) => `${str} | ${val.name} ${val.on ? '✅' : '🛑'}`,
-        `| ${new Date().toLocaleString()} `
-      )
+    this.logger.debug(
+      [...controlMap.values()]
+        .map(val => `${val.name} ${val.on ? '✅' : '🛑'}`)
+        .join(' | ')
     );
   }
 
