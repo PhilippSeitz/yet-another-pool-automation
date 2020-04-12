@@ -6,17 +6,27 @@ import {
 import { Socket } from 'net';
 import { ControlUpdate } from '@pool/data';
 import { GpioPinsService } from '../services/gpio-pins/gpio-pins.service';
+import { SocketTypes } from '@pool/data';
+import * as moment from 'moment';
 
 @WebSocketGateway()
 export class ControlsGateway {
   @WebSocketServer() server: Socket;
 
-  constructor(private gpio: GpioPinsService) {}
+  constructor(private gpio: GpioPinsService) {
+    this.gpio.controlUpdate$.subscribe(update =>
+      this.server.emit('update', update)
+    );
+  }
 
-  @SubscribeMessage('toggle')
+  @SubscribeMessage(SocketTypes.toggle)
   handleToggle(client: Socket, data: ControlUpdate) {
-    client.emit('ackn', data);
     this.gpio.update(data.id, data.on);
-    this.server.emit('update', data);
+  }
+
+  @SubscribeMessage(SocketTypes.startQuickAction)
+  startQuickAction(client: Socket, data: any) {
+    console.log('wouh');
+    this.gpio.startQuickAction({ start: moment(), duration: 1 });
   }
 }

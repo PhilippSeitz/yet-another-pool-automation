@@ -56,6 +56,17 @@ export class ControlsEffects implements OnInitEffects {
     )
   );
 
+  startQuickAction$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ControlsActions.startQuickAction),
+        tap(() => this.controlSocketService.startQuickAction())
+      ),
+    {
+      dispatch: false
+    }
+  );
+
   update$ = createEffect(() =>
     this.controlSocketService.update$.pipe(
       map(update => ControlsActions.updateControl({ update }))

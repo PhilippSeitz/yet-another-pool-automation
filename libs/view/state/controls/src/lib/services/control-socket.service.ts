@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Subject, Observable } from 'rxjs';
 import { ControlUpdate } from '@pool/data';
+import { SocketTypes } from '../../../../../../data/src/index';
 
 export const environment = {
   production: false,
@@ -31,6 +32,10 @@ export class ControlSocketService {
   }
 
   toggle(update: ControlUpdate) {
-    this.socket.emit('toggle', update);
+    this.socket.emit(SocketTypes.toggle, update);
+  }
+
+  startQuickAction() {
+    this.socket.emit(SocketTypes.startQuickAction);
   }
 }

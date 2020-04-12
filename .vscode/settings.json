@@ -10,5 +10,6 @@
     "statusBar.foreground": "#e7e7e7",
     "statusBar.border": "#138d54"
   },
-  "peacock.color": "#138d54"
+  "peacock.color": "#138d54",
+  "vsicons.presets.angular": true
 }

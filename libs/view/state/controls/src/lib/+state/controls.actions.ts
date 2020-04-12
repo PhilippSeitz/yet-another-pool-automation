@@ -22,3 +22,5 @@ export const updateControl = createAction(
   '[Controls] Update Control',
   props<{ update: ControlUpdate }>()
 );
+
+export const startQuickAction = createAction('[Controls] Start QuickAction');

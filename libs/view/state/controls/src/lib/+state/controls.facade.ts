@@ -21,6 +21,10 @@ export class ControlsFacade {
     this.dispatch(ControlActions.toggleControl({ id }));
   }
 
+  startQuickAction() {
+    this.dispatch(ControlActions.startQuickAction());
+  }
+
   selectControlById(id: string) {
     return this.store.pipe(select(ControlsSelectors.getControlById, { id }));
   }

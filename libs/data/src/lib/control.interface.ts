@@ -3,8 +3,3 @@ export interface Control {
   name: string;
   on: boolean;
 }
-
-export interface ControlUpdate {
-  id: string;
-  on: boolean;
-}
