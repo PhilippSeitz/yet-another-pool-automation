@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Subject, Observable } from 'rxjs';
-import { ControlUpdate } from '@pool/data';
-import { SocketTypes } from '../../../../../../data/src/index';
+import { ControlUpdate, SocketTypes } from '@pool/data';
 
 export const environment = {
   production: false,
@@ -26,7 +25,7 @@ export class ControlSocketService {
 
   setupSocket() {
     this.socket = io(environment.SOCKET_ENDPOINT);
-    this.socket.on('update', (message: ControlUpdate) =>
+    this.socket.on(SocketTypes.update, (message: ControlUpdate) =>
       this._update$.next(message)
     );
   }

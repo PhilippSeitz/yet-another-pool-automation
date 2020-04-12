@@ -3,5 +3,6 @@ export * from './lib/control-update.interface';
 
 export enum SocketTypes {
   startQuickAction = 'startQuickAction',
-  toggle = 'toggle'
+  toggle = 'toggle',
+  update = 'update'
 }

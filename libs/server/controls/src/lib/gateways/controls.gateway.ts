@@ -15,7 +15,7 @@ export class ControlsGateway {
 
   constructor(private gpio: GpioPinsService) {
     this.gpio.controlUpdate$.subscribe(update =>
-      this.server.emit('update', update)
+      this.server.emit(SocketTypes.update, update)
     );
   }
 
@@ -26,7 +26,6 @@ export class ControlsGateway {
 
   @SubscribeMessage(SocketTypes.startQuickAction)
   startQuickAction(client: Socket, data: any) {
-    console.log('wouh');
     this.gpio.startQuickAction({ start: moment(), duration: 1 });
   }
 }
