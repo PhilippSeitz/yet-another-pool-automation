@@ -3,11 +3,6 @@ import * as io from 'socket.io-client';
 import { Subject, Observable } from 'rxjs';
 import { ControlUpdate, SocketTypes } from '@pool/data';
 
-export const environment = {
-  production: false,
-  SOCKET_ENDPOINT: 'http://localhost:3333'
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +19,7 @@ export class ControlSocketService {
   }
 
   setupSocket() {
-    this.socket = io(environment.SOCKET_ENDPOINT);
+    this.socket = io('/');
     this.socket.on(SocketTypes.update, (message: ControlUpdate) =>
       this._update$.next(message)
     );

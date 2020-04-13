@@ -66,6 +66,7 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "pool-client:build",
+            "proxyConfig": "proxy.conf.json",
             "customWebpackConfig": {
               "path": "./webpack.config.js"
             }
