@@ -16,7 +16,7 @@ export class GpioPinsService {
   schedule = [
     { time: '08:00', on: true },
     { time: '12:04', on: false },
-    { time: '12:05', on: false }
+    { time: '12:38', on: false }
   ];
 
   quickAction: QuickAction;
@@ -100,10 +100,10 @@ export class GpioPinsService {
       return;
     }
 
-    this.schedule.forEach(element => {
-      if (element.time === nowKey) {
+    this.schedule.forEach(event => {
+      if (event.time === nowKey) {
         this.logger.verbose('schedule event');
-        this.update(this.quickActionTarget, element.on, false);
+        this.update(this.quickActionTarget, event.on, false);
       }
     });
   }
