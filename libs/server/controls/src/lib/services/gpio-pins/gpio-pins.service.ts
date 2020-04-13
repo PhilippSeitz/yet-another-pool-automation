@@ -15,7 +15,8 @@ export class GpioPinsService {
 
   schedule = [
     { time: '08:00', on: true },
-    { time: '17:00', on: true }
+    { time: '12:04', on: false },
+    { time: '12:05', on: false }
   ];
 
   quickAction: QuickAction;
@@ -49,7 +50,11 @@ export class GpioPinsService {
     );
   }
 
-  update(id: string, on: boolean) {
+  update(id: string, on: boolean, userOrigin = true) {
+    if (userOrigin && id === this.quickActionTarget && this.quickAction) {
+      this.endQuickAction();
+      return;
+    }
     this.controlMap.set(id, { ...this.controlMap.get(id), on });
     this._controlUpdate$.next({ id, on });
     this.print();
@@ -61,7 +66,7 @@ export class GpioPinsService {
 
   startQuickAction(quickAction: QuickAction) {
     this.quickAction = { ...quickAction, start: moment(quickAction.start) };
-    this.update(this.quickActionTarget, true);
+    this.update(this.quickActionTarget, true, false);
     this.logger.verbose(
       `Start new Quick Action until ${this.f(
         moment(this.quickAction.start).add(this.quickAction.duration, 'minutes')
@@ -72,13 +77,13 @@ export class GpioPinsService {
   private endQuickAction() {
     this.quickAction = undefined;
     this.logger.verbose('end quick action');
-    this.update(this.quickActionTarget, false);
+    this.update(this.quickActionTarget, false, false);
   }
 
-  // Called every minute * * * * *
-  @Cron('*/5 * * * * *')
+  @Cron('* * * * *')
   handleCron() {
     const now = moment();
+    const nowKey = this.f(now);
 
     if (this.quickAction) {
       this.logger.verbose('quickAction found');
@@ -91,6 +96,15 @@ export class GpioPinsService {
       if (isQuickActionAfter) {
         this.endQuickAction();
       }
+
+      return;
     }
+
+    this.schedule.forEach(element => {
+      if (element.time === nowKey) {
+        this.logger.verbose('schedule event');
+        this.update(this.quickActionTarget, element.on, false);
+      }
+    });
   }
 }
