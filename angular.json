@@ -28,7 +28,7 @@
             "styles": ["apps/pool-client/src/styles.scss"],
             "scripts": [],
             "customWebpackConfig": {
-              "path": "./webpack.config.js"
+              "path": "./webpack-prod.config.js"
             }
           },
           "configurations": {

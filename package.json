@@ -65,6 +65,7 @@
     "@angular/cli": "9.1.0",
     "@angular/compiler-cli": "^9.1.0",
     "@angular/language-service": "^9.1.0",
+    "@fullhuman/postcss-purgecss": "^2.1.2",
     "@nestjs/cli": "^7.1.2",
     "@nestjs/schematics": "^6.7.0",
     "@nestjs/testing": "^6.8.3",
