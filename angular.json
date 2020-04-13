@@ -233,6 +233,7 @@
         "build": {
           "builder": "@nrwl/node:build",
           "options": {
+            "webpackConfig": "webpack-server-prod.config.js",
             "outputPath": "dist/apps/pool-server",
             "main": "apps/pool-server/src/main.ts",
             "tsConfig": "apps/pool-server/tsconfig.app.json",
