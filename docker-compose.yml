@@ -12,6 +12,20 @@ services:
     image: ptothep/server:latest
     networks:
       - pool
+    depends_on:
+      - gpio
+      - mqtt
+  gpio:
+    image: ptothep/gpio:latest
+    networks:
+      - pool
+    depends_on:
+      - mqtt
+
+  mqtt:
+    image: eclipse-mosquitto
+    networks:
+      - pool
 
 networks:
   pool:

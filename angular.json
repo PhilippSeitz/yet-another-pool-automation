@@ -367,6 +367,7 @@
         "build": {
           "builder": "@nrwl/node:build",
           "options": {
+            "webpackConfig": "webpack-server-prod.config.js",
             "outputPath": "dist/apps/pool-gpio",
             "main": "apps/pool-gpio/src/main.ts",
             "tsConfig": "apps/pool-gpio/tsconfig.app.json",
