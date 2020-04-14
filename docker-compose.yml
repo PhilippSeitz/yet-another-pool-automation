@@ -21,6 +21,8 @@ services:
       - pool
     depends_on:
       - mqtt
+    volumes:
+      - /sys
 
   mqtt:
     image: eclipse-mosquitto
