@@ -1,8 +1,9 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, Inject } from '@nestjs/common';
 import { Control, ControlUpdate } from '@pool/data';
 import { Cron } from '@nestjs/schedule';
 import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
+import { ClientProxy } from '@nestjs/microservices';
 
 interface QuickAction {
   start: moment.Moment;
@@ -39,7 +40,10 @@ export class GpioPinsService {
     return [...this.controlMap.values()];
   }
 
-  constructor(private logger: Logger) {
+  constructor(
+    private logger: Logger,
+    @Inject('GPIO_SERVICE') private client: ClientProxy
+  ) {
     this.logger.setContext('GpioPins');
   }
   private print() {
@@ -57,7 +61,13 @@ export class GpioPinsService {
     }
     this.controlMap.set(id, { ...this.controlMap.get(id), on });
     this._controlUpdate$.next({ id, on });
+
+    const light = this.controlMap.get('2');
     this.print();
+    return this.client.send(
+      light.on ? { cmd: 'on' } : { cmd: 'off' },
+      light.id
+    );
   }
 
   private f(d: moment.Moment) {

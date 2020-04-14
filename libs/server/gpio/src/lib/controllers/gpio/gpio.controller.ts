@@ -1,15 +1,18 @@
-import { Controller, Inject } from '@nestjs/common';
-import { MessagePattern, ClientProxy } from '@nestjs/microservices';
+import { Controller } from '@nestjs/common';
+import { MessagePattern } from '@nestjs/microservices';
+import { GpioService } from '../../services/gpio/gpio.service';
 
 @Controller('gpio')
 export class GpioController {
-  constructor(@Inject('GPIO_SERVICE') client: ClientProxy) {
-    client.send({ cmd: 'on' }, 'test asdf').subscribe();
-  }
+  constructor(private gpio: GpioService) {}
 
   @MessagePattern({ cmd: 'on' })
-  accumulate(data) {
-    console.log(data);
-    return;
+  on(id: number) {
+    return this.gpio.on(id);
+  }
+
+  @MessagePattern({ cmd: 'off' })
+  off(id: number) {
+    return this.gpio.off(id);
   }
 }

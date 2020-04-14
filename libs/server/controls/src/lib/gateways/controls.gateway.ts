@@ -21,7 +21,7 @@ export class ControlsGateway {
 
   @SubscribeMessage(SocketTypes.toggle)
   handleToggle(client: Socket, data: ControlUpdate) {
-    this.gpio.update(data.id, data.on);
+    return this.gpio.update(data.id, data.on);
   }
 
   @SubscribeMessage(SocketTypes.startQuickAction)

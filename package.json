@@ -57,6 +57,7 @@
     "husky": "^4.2.5",
     "moment": "^2.24.0",
     "mqtt": "^3.0.0",
+    "onoff": "^5.0.1",
     "pretty-quick": "^2.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.4",

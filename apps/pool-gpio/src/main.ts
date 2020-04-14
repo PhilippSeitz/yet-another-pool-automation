@@ -8,7 +8,7 @@ async function bootstrap() {
     {
       transport: Transport.MQTT,
       options: {
-        url: 'mqtt://localhost:1883'
+        url: 'mqtt://mqtt:1883'
       }
     }
   );
