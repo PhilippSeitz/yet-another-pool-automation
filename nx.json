@@ -43,6 +43,12 @@
     },
     "server-controls": {
       "tags": []
+    },
+    "server-gpio": {
+      "tags": []
+    },
+    "pool-gpio": {
+      "tags": []
     }
   }
 }

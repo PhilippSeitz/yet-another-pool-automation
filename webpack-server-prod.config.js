@@ -64,7 +64,8 @@ function generatePackageJson() {
   const implicitDeps = [
     '@nestjs/platform-express',
     'reflect-metadata',
-    '@nestjs/platform-socket.io'
+    '@nestjs/platform-socket.io',
+    'mqtt'
   ];
   const dependencies = implicitDeps.reduce((acc, dep) => {
     acc[dep] = packageJson.dependencies[dep];
