@@ -64,10 +64,7 @@ export class GpioPinsService {
 
     const light = this.controlMap.get('2');
     this.print();
-    return this.client.send(
-      light.on ? { cmd: 'on' } : { cmd: 'off' },
-      light.id
-    );
+    return this.client.send(light.on ? { cmd: 'on' } : { cmd: 'off' }, 9);
   }
 
   private f(d: moment.Moment) {

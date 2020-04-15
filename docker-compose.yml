@@ -22,7 +22,7 @@ services:
     depends_on:
       - mqtt
     volumes:
-      - /sys
+      - /sys:/sys
 
   mqtt:
     image: eclipse-mosquitto
