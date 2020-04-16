@@ -1,10 +1,22 @@
 .toggle__dot {
   top: -0.25rem;
   left: -0.25rem;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in;
+}
+
+.toggle__line {
+  transition: all 0.1s ease-in;
 }
 
 input:checked ~ .toggle__dot {
   transform: translateX(100%);
   @apply bg-blue-400;
+}
+
+input:checked ~ .toggle__line {
+  @apply bg-gray-300;
+}
+
+input:disabled ~ .toggle__line {
+  @apply bg-gray-100;
 }

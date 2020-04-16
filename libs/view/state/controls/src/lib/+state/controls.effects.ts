@@ -1,15 +1,7 @@
 import { Injectable } from '@angular/core';
-import {
-  createEffect,
-  Actions,
-  ofType,
-  ROOT_EFFECTS_INIT,
-  OnInitEffects
-} from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
-import { tap, map, withLatestFrom, flatMap } from 'rxjs/operators';
+import { createEffect, Actions, ofType, OnInitEffects } from '@ngrx/effects';
+import { tap, map, withLatestFrom, flatMap, delay } from 'rxjs/operators';
 
-import * as fromControls from './controls.reducer';
 import * as ControlsActions from './controls.actions';
 import { Action } from '@ngrx/store';
 import { ControlSocketService } from '../services/control-socket.service';

@@ -1,6 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import './shimmer.scss';
 
 html {
   @apply h-full overflow-hidden bg-gray-100 text-gray-800;

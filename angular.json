@@ -28,7 +28,7 @@
             "styles": ["apps/pool-client/src/styles.scss"],
             "scripts": [],
             "customWebpackConfig": {
-              "path": "./webpack-prod.config.js"
+              "path": "./webpack.config.js"
             }
           },
           "configurations": {
@@ -66,10 +66,7 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "pool-client:build",
-            "proxyConfig": "proxy.conf.json",
-            "customWebpackConfig": {
-              "path": "./webpack.config.js"
-            }
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -219,7 +216,7 @@
       },
       "schematics": {
         "@nrwl/angular:component": {
-          "style": "less"
+          "style": "scss"
         }
       }
     },

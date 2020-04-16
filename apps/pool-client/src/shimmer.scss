@@ -1,0 +1,74 @@
+$shimmer-grey1: #f7fafc !default;
+$shimmer-grey2: #edf2f7 !default;
+
+.animated-shimmer {
+  background: $shimmer-grey1
+    linear-gradient(
+      to right,
+      $shimmer-grey1 0%,
+      $shimmer-grey2 20%,
+      $shimmer-grey1 40%,
+      $shimmer-grey1 100%
+    )
+    no-repeat;
+  background-size: 1200px 100%;
+  animation-duration: 1.5s 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -600px 0;
+  }
+
+  100% {
+    background-position: 700px 0;
+  }
+}
+
+label.shimmer,
+span.shimmer,
+h1.shimmer,
+h2.shimmer,
+h3.shimmer,
+h4.shimmer,
+h5.shimmer,
+h6.shimmer,
+p.shimmer {
+  color: transparent !important;
+  position: relative;
+}
+
+label.shimmer::before,
+span.shimmer::before,
+h1.shimmer::before,
+h2.shimmer::before,
+h3.shimmer::before,
+h4.shimmer::before,
+h5.shimmer::before,
+h6.shimmer::before,
+p.shimmer::before {
+  background: $shimmer-grey1
+    linear-gradient(
+      to right,
+      $shimmer-grey1 0%,
+      $shimmer-grey2 20%,
+      $shimmer-grey1 40%,
+      $shimmer-grey1 100%
+    )
+    no-repeat;
+  background-size: 1200px 100%;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+  content: ' ';
+  position: absolute;
+  height: 80%;
+  top: 10%;
+  @apply rounded w-full;
+}

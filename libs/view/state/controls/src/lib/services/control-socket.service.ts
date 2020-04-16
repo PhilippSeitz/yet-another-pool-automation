@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Subject, Observable } from 'rxjs';
 import { ControlUpdate, SocketTypes, Control } from '@pool/data';
-import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'

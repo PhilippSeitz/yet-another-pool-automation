@@ -1,11 +1,19 @@
 <section class="pt-6 p-4">
-  <pool-toggle-card
-    [control]="control"
-    (toggle)="toggle(control.id)"
-    *ngFor="let control of controls$ | async; trackBy: trackBy"
-  ></pool-toggle-card>
+  <ng-container *ngIf="loaded$ | async; else loading">
+    <pool-toggle-card
+      [control]="control"
+      (toggle)="toggle(control.id)"
+      *ngFor="let control of controls$ | async; trackBy: trackBy"
+    ></pool-toggle-card>
+  </ng-container>
+  <ng-template #loading>
+    <pool-toggle-card
+      [loading]="true"
+      *ngFor="let placeholder of [].constructor(4)"
+    ></pool-toggle-card>
+  </ng-template>
 </section>
-<section class="pt-2 mt-40 p-4 bg-blue-400">
+<section class="pt-2 mt-40 p-4 bg-blue-400" *ngIf="!production">
   <div class="p-4 bg-gray-900 rounded shadow-lg pb-64 -mt-40">
     <h2 class="font-bold text-white">Pumpe</h2>
     <div class="mt-3">
@@ -13,7 +21,7 @@
     </div>
   </div>
 
-  <div class="flex -mx-2">
+  <div class="flex -mx-2" *ngIf="!production">
     <div
       class="bg-white font-bold p-4 mt-6 w-full rounded mx-2"
       (click)="startQuickAction()"

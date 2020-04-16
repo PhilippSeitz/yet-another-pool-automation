@@ -4,10 +4,15 @@
     <!-- toggle -->
     <div class="relative cursor-pointer">
       <!-- input -->
-      <input type="checkbox" class="hidden" [checked]="checked" />
+      <input
+        type="checkbox"
+        class="hidden"
+        [checked]="checked"
+        [disabled]="disabled"
+      />
       <!-- line -->
       <div
-        class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"
+        class="toggle__line w-10 h-4 bg-gray-100 rounded-full shadow-inner"
       ></div>
       <!-- dot -->
       <div

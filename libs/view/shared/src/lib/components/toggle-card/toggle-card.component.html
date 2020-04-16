@@ -3,8 +3,15 @@
   (click)="click($event)"
 >
   <div>
-    <h3 class="text-xs text-gray-400 font-bold m-0 uppercase">Status</h3>
-    <h2 class="font-bold text-lg">{{ control.name }}</h2>
+    <h3
+      class="text-xs text-gray-400 font-bold m-0 uppercase"
+      [ngClass]="{ 'w-20 shimmer': loading }"
+    >
+      Status
+    </h3>
+    <h2 class="font-bold text-lg" [ngClass]="{ 'w-48 shimmer': loading }">
+      {{ loading ? 'Placeholder' : control?.name }}
+    </h2>
   </div>
-  <pool-toggle [checked]="control.on"></pool-toggle>
+  <pool-toggle [checked]="control?.on" [disabled]="loading"></pool-toggle>
 </div>

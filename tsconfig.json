@@ -22,7 +22,8 @@
       "@pool/data": ["libs/data/src/index.ts"],
       "@pool/server/controls": ["libs/server/controls/src/index.ts"],
       "@pool/server/gpio": ["libs/server/gpio/src/index.ts"],
-      "@env/server": ["apps/pool-server/src/environments/environment"]
+      "@env/server": ["apps/pool-server/src/environments/environment"],
+      "@env/client": ["apps/pool-client/src/environments/environment"]
     }
   },
   "exclude": ["node_modules", "tmp"]

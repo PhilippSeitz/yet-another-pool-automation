@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlsFacade } from '@pool/view/state/controls';
+import { environment } from '@env/client';
 
 @Component({
   selector: 'pool-dashboard',
@@ -8,6 +9,8 @@ import { ControlsFacade } from '@pool/view/state/controls';
 })
 export class DashboardComponent implements OnInit {
   controls$ = this.controlsFacade.allControls$;
+  loaded$ = this.controlsFacade.loaded$;
+  production = environment.production;
 
   constructor(private controlsFacade: ControlsFacade) {}
 
