@@ -356,62 +356,6 @@
           }
         }
       }
-    },
-    "pool-gpio": {
-      "root": "apps/pool-gpio",
-      "sourceRoot": "apps/pool-gpio/src",
-      "projectType": "application",
-      "prefix": "pool-gpio",
-      "schematics": {},
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:build",
-          "options": {
-            "webpackConfig": "webpack-server-prod.config.js",
-            "outputPath": "dist/apps/pool-gpio",
-            "main": "apps/pool-gpio/src/main.ts",
-            "tsConfig": "apps/pool-gpio/tsconfig.app.json",
-            "assets": ["apps/pool-gpio/src/assets"]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/pool-gpio/src/environments/environment.ts",
-                  "with": "apps/pool-gpio/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "pool-gpio:build"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/pool-gpio/tsconfig.app.json",
-              "apps/pool-gpio/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/pool-gpio/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "apps/pool-gpio/jest.config.js",
-            "tsConfig": "apps/pool-gpio/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
     }
   },
   "cli": {

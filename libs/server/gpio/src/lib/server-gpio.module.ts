@@ -1,10 +1,16 @@
-import { Module } from '@nestjs/common';
-import { GpioController } from './controllers/gpio/gpio.controller';
+import { Module, Logger } from '@nestjs/common';
 import { GpioService } from './services/gpio/gpio.service';
+import { GpioMockService } from './services/gpio-mock/gpio-mock.service';
+
+import { environment } from '@env/server';
 
 @Module({
-  controllers: [GpioController],
-  providers: [GpioService],
-  exports: []
+  providers: [
+    environment.production
+      ? GpioService
+      : { provide: GpioService, useClass: GpioMockService },
+    Logger
+  ],
+  exports: [GpioService]
 })
 export class ServerGpioModule {}

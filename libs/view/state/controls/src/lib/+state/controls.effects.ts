@@ -19,26 +19,8 @@ import { of } from 'rxjs';
 @Injectable()
 export class ControlsEffects implements OnInitEffects {
   loadControls$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ControlsActions.loadControls),
-      fetch({
-        run: action => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
-          return ControlsActions.loadControlsSuccess({
-            controls: [
-              { id: '1', name: 'Pumpe', on: false },
-              { id: '2', name: 'Licht', on: true },
-              { id: '3', name: 'Pool Licht', on: false },
-              { id: '4', name: 'Gegenstromanlage', on: true }
-            ]
-          });
-        },
-
-        onError: (action, error) => {
-          console.error('Error', error);
-          return ControlsActions.loadControlsFailure({ error });
-        }
-      })
+    this.controlSocketService.loaded$.pipe(
+      map(controls => ControlsActions.loadControlsSuccess({ controls }))
     )
   );
 

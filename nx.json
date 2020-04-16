@@ -46,9 +46,6 @@
     },
     "server-gpio": {
       "tags": []
-    },
-    "pool-gpio": {
-      "tags": []
     }
   }
 }

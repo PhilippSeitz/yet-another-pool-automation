@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Subject, Observable } from 'rxjs';
-import { ControlUpdate, SocketTypes } from '@pool/data';
+import { ControlUpdate, SocketTypes, Control } from '@pool/data';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,12 @@ export class ControlSocketService {
     return this._update$;
   }
 
+  get loaded$(): Observable<Control[]> {
+    return this._loaded$;
+  }
+
   private _update$ = new Subject<ControlUpdate>();
+  private _loaded$ = new Subject<Control[]>();
 
   constructor() {
     this.setupSocket();
@@ -20,9 +26,22 @@ export class ControlSocketService {
 
   setupSocket() {
     this.socket = io('/');
+
     this.socket.on(SocketTypes.update, (message: ControlUpdate) =>
       this._update$.next(message)
     );
+
+    this.socket.on('disconnect', function() {
+      console.log('disconnected');
+    });
+
+    this.socket.on('connect', async () => {
+      this.socket.emit(SocketTypes.getAll);
+    });
+
+    this.socket.on(SocketTypes.sendAll, (data: Control[]) => {
+      this._loaded$.next(data);
+    });
   }
 
   toggle(update: ControlUpdate) {

@@ -1,21 +1,31 @@
 import {
   SubscribeMessage,
   WebSocketGateway,
-  WebSocketServer
+  WebSocketServer,
+  OnGatewayConnection,
+  OnGatewayInit
 } from '@nestjs/websockets';
 import { Socket } from 'net';
 import { ControlUpdate } from '@pool/data';
 import { GpioPinsService } from '../services/gpio-pins/gpio-pins.service';
 import { SocketTypes } from '@pool/data';
 import * as moment from 'moment';
+import { tap, map } from 'rxjs/operators';
 
 @WebSocketGateway()
-export class ControlsGateway {
-  @WebSocketServer() server: Socket;
-
-  constructor(private gpio: GpioPinsService) {
+export class ControlsGateway implements OnGatewayInit {
+  constructor(private gpio: GpioPinsService) {}
+  afterInit(server: Socket) {
     this.gpio.controlUpdate$.subscribe(update =>
-      this.server.emit(SocketTypes.update, update)
+      server.emit(SocketTypes.update, update)
+    );
+  }
+
+  @SubscribeMessage(SocketTypes.getAll)
+  getAll(client: Socket) {
+    return this.gpio.getAll().pipe(
+      map(value => [...value.values()]),
+      tap(data => client.emit(SocketTypes.sendAll, data))
     );
   }
 
@@ -26,6 +36,6 @@ export class ControlsGateway {
 
   @SubscribeMessage(SocketTypes.startQuickAction)
   startQuickAction(client: Socket, data: any) {
-    this.gpio.startQuickAction({ start: moment(), duration: 1 });
+    return this.gpio.startQuickAction({ start: moment(), duration: 1 });
   }
 }

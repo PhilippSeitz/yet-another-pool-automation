@@ -1,9 +1,9 @@
-import { Injectable, Logger, Inject } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Control, ControlUpdate } from '@pool/data';
 import { Cron } from '@nestjs/schedule';
 import * as moment from 'moment';
-import { Observable, Subject } from 'rxjs';
-import { ClientProxy } from '@nestjs/microservices';
+import { Observable, Subject, of } from 'rxjs';
+import { GpioService } from '@pool/server/gpio';
 
 interface QuickAction {
   start: moment.Moment;
@@ -22,12 +22,11 @@ export class GpioPinsService {
 
   quickAction: QuickAction;
   readonly quickActionTarget = '1';
-
   controlMap: Map<string, Control> = [
-    { id: '1', name: 'Pumpe', on: false },
-    { id: '2', name: 'Licht', on: true },
-    { id: '3', name: 'Pool Licht', on: false },
-    { id: '4', name: 'Gegenstromanlage', on: true }
+    { id: '1', name: 'Pumpe', on: false, pin: 17 },
+    { id: '2', name: 'Licht', on: false, pin: 9 },
+    { id: '3', name: 'Pool Licht', on: false, pin: 10 },
+    { id: '4', name: 'Gegenstromanlage', on: false, pin: 22 }
   ].reduce((map, obj) => map.set(obj.id, obj), new Map());
 
   get controlUpdate$(): Observable<ControlUpdate> {
@@ -40,12 +39,10 @@ export class GpioPinsService {
     return [...this.controlMap.values()];
   }
 
-  constructor(
-    private logger: Logger,
-    @Inject('GPIO_SERVICE') private client: ClientProxy
-  ) {
+  constructor(private logger: Logger, private gpio: GpioService) {
     this.logger.setContext('GpioPins');
   }
+
   private print() {
     this.logger.debug(
       [...this.controlMap.values()]
@@ -54,17 +51,20 @@ export class GpioPinsService {
     );
   }
 
+  getAll() {
+    return of(this.controlMap);
+  }
+
   update(id: string, on: boolean, userOrigin = true) {
     if (userOrigin && id === this.quickActionTarget && this.quickAction) {
-      this.endQuickAction();
-      return;
+      return this.endQuickAction();
     }
-    this.controlMap.set(id, { ...this.controlMap.get(id), on });
+    const control = this.controlMap.get(id);
+    this.controlMap.set(id, { ...control, on });
     this._controlUpdate$.next({ id, on });
 
-    const light = this.controlMap.get('2');
     this.print();
-    return this.client.send(light.on ? { cmd: 'on' } : { cmd: 'off' }, 9);
+    return on ? this.gpio.on(control.pin) : this.gpio.off(control.pin);
   }
 
   private f(d: moment.Moment) {
@@ -73,18 +73,18 @@ export class GpioPinsService {
 
   startQuickAction(quickAction: QuickAction) {
     this.quickAction = { ...quickAction, start: moment(quickAction.start) };
-    this.update(this.quickActionTarget, true, false);
     this.logger.verbose(
       `Start new Quick Action until ${this.f(
         moment(this.quickAction.start).add(this.quickAction.duration, 'minutes')
       )}`
     );
+    return this.update(this.quickActionTarget, true, false);
   }
 
   private endQuickAction() {
     this.quickAction = undefined;
     this.logger.verbose('end quick action');
-    this.update(this.quickActionTarget, false, false);
+    return this.update(this.quickActionTarget, false, false);
   }
 
   @Cron('* * * * *')
