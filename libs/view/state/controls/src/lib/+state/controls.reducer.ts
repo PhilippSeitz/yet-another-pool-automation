@@ -10,6 +10,7 @@ export interface State extends EntityState<Control> {
   selectedId?: string | number; // which Controls record has been selected
   loaded: boolean; // has the Controls list been loaded
   error?: string | null; // last none error (if any)
+  offline: boolean;
 }
 
 export interface ControlsPartialState {
@@ -21,7 +22,8 @@ export const controlsAdapter: EntityAdapter<Control> = createEntityAdapter<
 >();
 
 export const initialState: State = controlsAdapter.getInitialState({
-  loaded: false
+  loaded: false,
+  offline: true
 });
 
 const controlsReducer = createReducer(
@@ -40,7 +42,9 @@ const controlsReducer = createReducer(
   })),
   on(ControlsActions.updateControl, (state, { update }) =>
     controlsAdapter.updateOne({ id: update.id, changes: update }, { ...state })
-  )
+  ),
+  on(ControlsActions.connected, state => ({ ...state, offline: false })),
+  on(ControlsActions.disconnected, state => ({ ...state, offline: true }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

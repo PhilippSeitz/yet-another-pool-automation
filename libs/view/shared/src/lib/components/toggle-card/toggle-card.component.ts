@@ -10,12 +10,14 @@ export class ToggleCardComponent implements OnInit {
   @Input() control: ControlsEntity;
   @Input() loading = false;
   @Output() toggle = new EventEmitter();
+  @Input() disabled = false;
+
   constructor() {}
 
   ngOnInit(): void {}
 
   click(event: MouseEvent) {
-    if (this.loading) {
+    if (this.loading || this.disabled) {
       return;
     }
     this.toggle.emit();

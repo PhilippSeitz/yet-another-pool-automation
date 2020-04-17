@@ -2,6 +2,7 @@
   <ng-container *ngIf="loaded$ | async; else loading">
     <pool-toggle-card
       [control]="control"
+      [disabled]="offline$ | async"
       (toggle)="toggle(control.id)"
       *ngFor="let control of controls$ | async; trackBy: trackBy"
     ></pool-toggle-card>

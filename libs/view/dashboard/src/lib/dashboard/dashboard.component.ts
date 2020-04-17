@@ -10,6 +10,7 @@ import { environment } from '@env/client';
 export class DashboardComponent implements OnInit {
   controls$ = this.controlsFacade.allControls$;
   loaded$ = this.controlsFacade.loaded$;
+  offline$ = this.controlsFacade.isOffline$;
   production = environment.production;
 
   constructor(private controlsFacade: ControlsFacade) {}

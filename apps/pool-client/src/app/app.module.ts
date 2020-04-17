@@ -9,6 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StateControlsModule } from '@pool/view/state/controls';
+import { ViewHeaderModule } from '../../../../libs/view/header/src/lib/view-header.module';
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
     !environment.production
       ? StoreDevtoolsModule.instrument({ name: 'Pool Client' })
       : [],
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
+    ViewHeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

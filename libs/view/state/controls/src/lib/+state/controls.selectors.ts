@@ -39,3 +39,8 @@ export const getControlById = createSelector(
   getControlsEntities,
   (entities: Dictionary<Control>, { id }: { id: string }) => entities[id]
 );
+
+export const isOffline = createSelector(
+  getControlsState,
+  state => state.offline
+);

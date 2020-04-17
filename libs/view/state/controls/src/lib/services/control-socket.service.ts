@@ -16,8 +16,13 @@ export class ControlSocketService {
     return this._loaded$;
   }
 
+  get disconnected$(): Observable<void> {
+    return this._disconnected$;
+  }
+
   private _update$ = new Subject<ControlUpdate>();
   private _loaded$ = new Subject<Control[]>();
+  private _disconnected$ = new Subject<void>();
 
   constructor() {
     this.setupSocket();
@@ -30,8 +35,8 @@ export class ControlSocketService {
       this._update$.next(message)
     );
 
-    this.socket.on('disconnect', function() {
-      console.log('disconnected');
+    this.socket.on('disconnect', () => {
+      this._disconnected$.next();
     });
 
     this.socket.on('connect', async () => {

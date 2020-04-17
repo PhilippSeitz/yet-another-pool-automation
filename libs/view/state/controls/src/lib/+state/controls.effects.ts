@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType, OnInitEffects } from '@ngrx/effects';
-import { tap, map, withLatestFrom, flatMap, delay } from 'rxjs/operators';
+import {
+  tap,
+  map,
+  withLatestFrom,
+  flatMap,
+  delay,
+  switchMap,
+  mapTo
+} from 'rxjs/operators';
 
 import * as ControlsActions from './controls.actions';
 import { Action } from '@ngrx/store';
@@ -12,7 +20,16 @@ import { of } from 'rxjs';
 export class ControlsEffects implements OnInitEffects {
   loadControls$ = createEffect(() =>
     this.controlSocketService.loaded$.pipe(
-      map(controls => ControlsActions.loadControlsSuccess({ controls }))
+      switchMap(controls => [
+        ControlsActions.loadControlsSuccess({ controls }),
+        ControlsActions.connected()
+      ])
+    )
+  );
+
+  disconnected$ = createEffect(() =>
+    this.controlSocketService.disconnected$.pipe(
+      mapTo(ControlsActions.disconnected())
     )
   );
 

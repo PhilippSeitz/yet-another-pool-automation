@@ -23,4 +23,8 @@ export const updateControl = createAction(
   props<{ update: ControlUpdate }>()
 );
 
+export const connected = createAction('[Controls] Connected');
+
+export const disconnected = createAction('[Controls] Disconnected');
+
 export const startQuickAction = createAction('[Controls] Start QuickAction');

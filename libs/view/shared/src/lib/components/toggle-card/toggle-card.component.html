@@ -9,9 +9,15 @@
     >
       Status
     </h3>
-    <h2 class="font-bold text-lg" [ngClass]="{ 'w-48 shimmer': loading }">
+    <h2
+      class="font-bold text-lg duration-200 ease-in transition-colors"
+      [ngClass]="{ 'w-48 shimmer': loading, 'text-gray-400': disabled }"
+    >
       {{ loading ? 'Placeholder' : control?.name }}
     </h2>
   </div>
-  <pool-toggle [checked]="control?.on" [disabled]="loading"></pool-toggle>
+  <pool-toggle
+    [checked]="control?.on"
+    [disabled]="loading || disabled"
+  ></pool-toggle>
 </div>
