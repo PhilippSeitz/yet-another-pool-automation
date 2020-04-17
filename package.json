@@ -50,6 +50,7 @@
     "@nestjs/platform-express": "^7.0.7",
     "@nestjs/platform-socket.io": "^7.0.7",
     "@nestjs/schedule": "^0.3.0",
+    "@nestjs/typeorm": "^7.0.0",
     "@nestjs/websockets": "^7.0.7",
     "@ngrx/effects": "9.0.0",
     "@ngrx/entity": "9.0.0",
@@ -61,10 +62,12 @@
     "moment": "^2.24.0",
     "mqtt": "^3.0.0",
     "onoff": "^5.0.1",
+    "pg": "^8.0.2",
     "pretty-quick": "^2.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.4",
     "socket.io-client": "^2.3.0",
+    "typeorm": "^0.2.24",
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
