@@ -1,0 +1,7 @@
+version: '2'
+services:
+  backend:
+    image: ptothep/server:latest
+    ports:
+      - '3333:3333'
+    restart: always

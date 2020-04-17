@@ -1,0 +1,7 @@
+version: '2'
+services:
+  frontend:
+    image: ptothep/frontend:latest
+    ports:
+      - '80:80'
+    restart: always
