@@ -23,7 +23,12 @@
             "aot": true,
             "assets": [
               "apps/pool-client/src/favicon.ico",
-              "apps/pool-client/src/assets"
+              "apps/pool-client/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/feather-icons/dist",
+                "output": "./feather/"
+              }
             ],
             "styles": ["apps/pool-client/src/styles.scss"],
             "scripts": [],

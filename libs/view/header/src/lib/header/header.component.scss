@@ -1,0 +1,5 @@
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  @apply bg-gray-800;
+}
