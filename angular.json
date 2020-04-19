@@ -24,6 +24,7 @@
             "assets": [
               "apps/pool-client/src/favicon.ico",
               "apps/pool-client/src/assets",
+              "apps/pool-client/src/manifest.webmanifest",
               {
                 "glob": "**/*",
                 "input": "node_modules/feather-icons/dist",
@@ -63,7 +64,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/pool-client/ngsw-config.json"
             }
           }
         },

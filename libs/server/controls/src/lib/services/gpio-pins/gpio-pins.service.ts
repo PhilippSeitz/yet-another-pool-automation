@@ -15,9 +15,8 @@ export class GpioPinsService {
   history = [{ date: moment('18:30', 'HH:mm'), on: true }];
 
   schedule = [
-    { time: '08:00', on: true },
-    { time: '12:04', on: false },
-    { time: '12:38', on: false }
+    { time: '10:00', on: true },
+    { time: '18:00', on: false }
   ];
 
   quickAction: QuickAction;

@@ -9,7 +9,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StateControlsModule } from '@pool/view/state/controls';
-import { ViewHeaderModule } from '../../../../libs/view/header/src/lib/view-header.module';
+import { ViewHeaderModule } from '@pool/view/header';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const routes: Routes = [
   {
@@ -39,7 +40,11 @@ const routes: Routes = [
       ? StoreDevtoolsModule.instrument({ name: 'Pool Client' })
       : [],
     StoreRouterConnectingModule.forRoot(),
-    ViewHeaderModule
+    ViewHeaderModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      registrationStrategy: 'registerImmediately'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
