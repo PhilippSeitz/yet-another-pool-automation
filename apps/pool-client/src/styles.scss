@@ -27,4 +27,8 @@ html {
   }
 
   -webkit-tap-highlight-color: transparent;
+
+  .card {
+    @apply bg-white p-4 rounded shadow-sm;
+  }
 }

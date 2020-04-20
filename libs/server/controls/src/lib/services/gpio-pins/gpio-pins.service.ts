@@ -14,9 +14,10 @@ interface QuickAction {
 export class GpioPinsService {
   history = [{ date: moment('18:30', 'HH:mm'), on: true }];
 
+  // UTC Zeit
   schedule = [
-    { time: '10:00', on: true },
-    { time: '18:00', on: false }
+    { time: '08:00', on: true },
+    { time: '16:00', on: false }
   ];
 
   quickAction: QuickAction;
