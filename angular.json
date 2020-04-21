@@ -389,6 +389,61 @@
         }
       },
       "schematics": {}
+    },
+    "pool-temp": {
+      "root": "apps/pool-temp",
+      "sourceRoot": "apps/pool-temp/src",
+      "projectType": "application",
+      "prefix": "pool-temp",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/pool-temp",
+            "main": "apps/pool-temp/src/main.ts",
+            "tsConfig": "apps/pool-temp/tsconfig.app.json",
+            "assets": ["apps/pool-temp/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/pool-temp/src/environments/environment.ts",
+                  "with": "apps/pool-temp/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "pool-temp:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/pool-temp/tsconfig.app.json",
+              "apps/pool-temp/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/pool-temp/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/pool-temp/jest.config.js",
+            "tsConfig": "apps/pool-temp/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

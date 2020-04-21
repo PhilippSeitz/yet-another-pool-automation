@@ -49,6 +49,9 @@
     },
     "view-header": {
       "tags": []
+    },
+    "pool-temp": {
+      "tags": []
     }
   }
 }
