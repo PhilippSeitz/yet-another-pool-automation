@@ -24,6 +24,10 @@ services:
     image: eclipse-mosquitto
     ports:
       - 1883:1883
+  temp_collector:
+    image: ptothep/temp:latest
+    depends_on:
+      - influxdb
 networks:
   default:
     external:
