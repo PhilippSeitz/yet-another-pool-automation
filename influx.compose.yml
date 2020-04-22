@@ -28,6 +28,8 @@ services:
     image: ptothep/temp:latest
     depends_on:
       - influxdb
+    volumes:
+      - /sys/bus/w1/devices:/sys/bus/w1/devices
 networks:
   default:
     external:
