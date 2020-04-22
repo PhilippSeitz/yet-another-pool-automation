@@ -1,12 +1,12 @@
 version: '2'
 services:
   influxdb:
-    image: influxdb:alpine
+    image: arm32v7/influxdb
     restart: always
     volumes:
       - /mnt/disk1/influxdb:/var/lib/influxdb
   chronograf:
-    image: chronograf:alpine
+    image: arm32v7/chronograf
     restart: always
     entrypoint: chronograf --influxdb-url="http://influxdb:8086"
     ports:
@@ -14,7 +14,7 @@ services:
     depends_on:
       - influxdb
   telegraf:
-    image: telegraf:alpine
+    image: arm32v7/telegraf
     volumes:
       - $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /var/run/docker.sock:/var/run/docker.sock
