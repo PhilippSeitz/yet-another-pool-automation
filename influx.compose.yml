@@ -5,16 +5,15 @@ services:
     restart: always
     volumes:
       - /mnt/disk1/influxdb:/var/lib/influxdb
-  chronograf:
-    image: arm32v7/chronograf
+  grafana:
+    image: grafana/grafana
     restart: always
-    entrypoint: chronograf --influxdb-url="http://influxdb:8086"
     ports:
-      - 8888:8888
+      - 3000:3000
     depends_on:
       - influxdb
     volumes:
-      - /mnt/disk1/chronograf:/var/lib/chronograf
+      - /mnt/disk1/grafana:/var/lib/grafana
   telegraf:
     image: arm32v7/telegraf
     volumes:
@@ -23,11 +22,13 @@ services:
     depends_on:
       - influxdb
   mqtt:
+    restart: always
     image: eclipse-mosquitto
     ports:
       - 1883:1883
   temp_collector:
     image: ptothep/temp:latest
+    restart: always
     depends_on:
       - influxdb
     volumes:
