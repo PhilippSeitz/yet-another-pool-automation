@@ -400,6 +400,7 @@
         "build": {
           "builder": "@nrwl/node:build",
           "options": {
+            "webpackConfig": "webpack-server-prod.config.js",
             "outputPath": "dist/apps/pool-temp",
             "main": "apps/pool-temp/src/main.ts",
             "tsConfig": "apps/pool-temp/tsconfig.app.json",

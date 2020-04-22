@@ -3,6 +3,8 @@ services:
   influxdb:
     image: influxdb:alpine
     restart: always
+    volumes:
+      - /mnt/disk1/influxdb:/var/lib/influxdb
   chronograf:
     image: chronograf:alpine
     restart: always

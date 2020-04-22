@@ -3,7 +3,7 @@ import { Cron } from '@nestjs/schedule';
 import * as fs from 'fs';
 import * as mqtt from 'mqtt';
 
-const client = mqtt.connect('mqtt://localhost:1883');
+const client = mqtt.connect('mqtt://mqtt:1883');
 
 @Injectable()
 export class AppService {
@@ -15,39 +15,47 @@ export class AppService {
     const match = data.match(/t=(-?\d+)/);
     this.logger.debug(name);
     if (data.indexOf('YES') !== -1 && match) {
-      const temp = parseInt(match[1], 10);
+      const temp = match[1];
       this.logger.debug(temp);
       client.publish(
         'gpio',
-        `gpio,location=pool id=12,value=f ${Date.now()}000000`
+        `gpio,location=${name} id=12,value=${temp} ${Date.now()}000000`
       );
     } else {
-      this.logger.error(`status not YET - ${name}`);
+      this.logger.error(`status not YES - ${name}`);
     }
   }
 
   private readSlaveFile(name: string) {
-    fs.readFile(name, { encoding: 'utf-8' }, (err, data) => {
-      if (err) {
-        this.logger.error(err);
-        return;
-      }
+    fs.readFile(
+      `/sys/bus/w1/devices/${name}/w1_slave`,
+      { encoding: 'utf-8' },
+      (err, data) => {
+        if (err) {
+          this.logger.error(err);
+          return;
+        }
 
-      this.readAndSendSlaveData(name, data);
-    });
+        this.readAndSendSlaveData(name, data);
+      }
+    );
   }
 
   private findSlaves() {
-    fs.readFile('testmaster', { encoding: 'utf-8' }, (err, data) => {
-      if (err) {
-        this.logger.error(err);
-        return;
-      }
+    fs.readFile(
+      '/sys/bus/w1/devices/w1_bus_master1/w1_master_slaves',
+      { encoding: 'utf-8' },
+      (err, data) => {
+        if (err) {
+          this.logger.error(err);
+          return;
+        }
 
-      data.split('\n').forEach(val => {
-        this.readSlaveFile(val);
-      });
-    });
+        data.split('\n').forEach(val => {
+          this.readSlaveFile(val);
+        });
+      }
+    );
   }
 
   @Cron('*/5 * * * * *')

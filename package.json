@@ -17,6 +17,7 @@
     "release:osx:frontend": "docker build --file deploy/frontend/Dockerfile --tag ptothep/frontend:latest .",
     "release:osx:server": "docker build --file deploy/server/Dockerfile --tag ptothep/server:latest .",
     "release:server": "docker buildx build --file deploy/server/Dockerfile --tag ptothep/server:latest --platform linux/arm/v7 --push .",
+    "release:temp": "docker buildx build --file deploy/temp/Dockerfile --tag ptothep/temp:latest --platform linux/arm/v7 --push .",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
