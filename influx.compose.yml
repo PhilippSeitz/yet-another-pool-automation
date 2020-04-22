@@ -13,6 +13,8 @@ services:
       - 8888:8888
     depends_on:
       - influxdb
+    volumes:
+      - /mnt/disk1/chronograf:/var/lib/chronograf
   telegraf:
     image: arm32v7/telegraf
     volumes:
