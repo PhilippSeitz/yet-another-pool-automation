@@ -27,6 +27,9 @@ export class AppService {
   }
 
   private readSlaveFile(name: string) {
+    if (!name) {
+      return;
+    }
     fs.readFile(
       `/sys/bus/w1/devices/${name}/w1_slave`,
       { encoding: 'utf-8' },
@@ -58,7 +61,7 @@ export class AppService {
     );
   }
 
-  @Cron('*/5 * * * * *')
+  @Cron('*/30 * * * * *')
   async getTemp() {
     this.findSlaves();
   }
