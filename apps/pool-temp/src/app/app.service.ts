@@ -18,8 +18,8 @@ export class AppService {
       const temp = match[1];
       this.logger.debug(temp);
       client.publish(
-        'gpio',
-        `gpio,location=${name} id=12,value=${temp} ${Date.now()}000000`
+        'temp',
+        `temp,location=${name} value=${temp} ${Date.now()}000000`
       );
     } else {
       this.logger.error(`status not YES - ${name}`);
