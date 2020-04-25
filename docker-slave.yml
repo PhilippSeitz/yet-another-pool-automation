@@ -7,3 +7,19 @@ services:
     restart: always
     volumes:
       - /sys:/sys
+  mqtt:
+    restart: always
+    image: eclipse-mosquitto
+    ports:
+      - 1883:1883
+  temp_collector:
+    image: ptothep/temp:latest
+    restart: always
+    depends_on:
+      - mqtt
+    volumes:
+      - /sys/bus/w1/devices:/sys/bus/w1/devices
+networks:
+  default:
+    external:
+      name: pool

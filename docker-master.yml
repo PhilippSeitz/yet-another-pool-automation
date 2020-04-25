@@ -8,3 +8,25 @@ services:
     restart: always
     volumes:
       - /home/pirate/cert:/etc/ssl/private
+  influxdb:
+    image: arm32v7/influxdb
+    restart: always
+    volumes:
+      - /mnt/disk1/influxdb:/var/lib/influxdb
+  grafana:
+    image: grafana/grafana
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - influxdb
+    volumes:
+      - /mnt/disk1/grafana:/var/lib/grafana
+  telegraf:
+    image: arm32v7/telegraf
+    restart: always
+    volumes:
+      - $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - influxdb
