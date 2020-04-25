@@ -19,7 +19,8 @@ export class AppService {
       this.logger.debug(temp);
       client.publish(
         'temp',
-        `temp,location=${name} value=${temp} ${Date.now()}000000`
+        `temp,location=${name} value=${temp} ${Date.now()}000000`,
+        { qos: 1 }
       );
     } else {
       this.logger.error(`status not YES - ${name}`);
