@@ -3,7 +3,10 @@ import { Cron } from '@nestjs/schedule';
 import * as fs from 'fs';
 import * as mqtt from 'mqtt';
 
-const client = mqtt.connect('mqtt://mqtt:1883');
+const client = mqtt.connect('mqtt://mqtt:1883', {
+  clean: false,
+  clientId: 'tempSender'
+});
 
 @Injectable()
 export class AppService {
