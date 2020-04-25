@@ -24,9 +24,9 @@ export class GpioPinsService {
   readonly quickActionTarget = '1';
   controlMap: Map<string, Control> = [
     { id: '1', name: 'Pumpe', on: false, pin: 17 },
-    { id: '2', name: 'Licht', on: false, pin: 9 },
-    { id: '3', name: 'Pool Licht', on: false, pin: 10 },
-    { id: '4', name: 'Gegenstromanlage', on: false, pin: 22 }
+    { id: '2', name: 'Gegenstrom', on: false, pin: 18 },
+    { id: '3', name: 'Licht Pool', on: false, pin: 27 },
+    { id: '4', name: 'Licht Wand', on: false, pin: 22 }
   ].reduce((map, obj) => map.set(obj.id, obj), new Map());
 
   get controlUpdate$(): Observable<ControlUpdate> {

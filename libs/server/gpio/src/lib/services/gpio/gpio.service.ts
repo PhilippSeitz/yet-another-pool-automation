@@ -4,19 +4,35 @@ import { Gpio } from 'onoff';
 const elements = [
   {
     pin: 17,
-    name: 'Pumpe'
+    description: 'Relay 1 / Pumpe'
+  },
+  {
+    pin: 18,
+    description: 'Relay 2 / Gegenstrom'
+  },
+  {
+    pin: 27,
+    description: 'Relay 3 / Licht Pool'
   },
   {
     pin: 22,
-    name: 'Gegenstromanlage'
+    description: 'Relay 4 / Licht Wand'
   },
   {
-    pin: 10,
-    name: 'Pool-Beleuchtung'
+    pin: 23,
+    description: 'Relay 5 / -'
   },
   {
-    pin: 9,
-    name: 'Licht'
+    pin: 24,
+    description: 'Relay 6 / -'
+  },
+  {
+    pin: 13,
+    description: 'Relay 7 / -'
+  },
+  {
+    pin: 19,
+    description: 'Relay 8 / -'
   }
 ];
 
