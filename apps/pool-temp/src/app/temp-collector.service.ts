@@ -9,7 +9,7 @@ const client = mqtt.connect('mqtt://mqtt:1883', {
 });
 
 @Injectable()
-export class AppService {
+export class TempCollectorService {
   constructor(private logger: Logger) {
     this.logger.setContext('temp');
   }

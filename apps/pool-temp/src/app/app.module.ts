@@ -1,10 +1,10 @@
 import { Module, Logger } from '@nestjs/common';
 
-import { AppService } from './app.service';
+import { TempCollectorService } from './temp-collector.service';
 import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [ScheduleModule.forRoot()],
-  providers: [AppService, Logger]
+  providers: [TempCollectorService, Logger]
 })
 export class AppModule {}
