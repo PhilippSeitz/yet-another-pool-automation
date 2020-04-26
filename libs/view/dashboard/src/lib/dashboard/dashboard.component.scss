@@ -1,8 +1,3 @@
-.display-card {
-  @apply text-white shadow-strong rounded;
-  &:not(:first-child) {
-    @apply ml-4;
-  }
-  height: 142px;
-  min-width: 256px;
+.snap {
+  scroll-snap-type: x mandatory;
 }

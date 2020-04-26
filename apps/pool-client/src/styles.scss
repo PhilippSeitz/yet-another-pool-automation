@@ -29,4 +29,10 @@ html {
   hr {
     @apply border-gray-200;
   }
+
+  .display-card {
+    @apply text-white shadow-strong rounded w-64 px-4 py-2;
+    height: 9rem;
+    scroll-snap-align: center;
+  }
 }

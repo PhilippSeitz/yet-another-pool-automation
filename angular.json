@@ -512,6 +512,9 @@
     },
     "@nrwl/angular:library": {
       "unitTestRunner": "jest"
+    },
+    "@schematics/angular:component": {
+      "style": "scss"
     }
   },
   "defaultProject": "pool-client"

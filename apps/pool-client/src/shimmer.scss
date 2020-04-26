@@ -1,5 +1,5 @@
-$shimmer-grey1: #f7fafc !default;
-$shimmer-grey2: #edf2f7 !default;
+$shimmer-grey1: theme('colors.gray.200') !default;
+$shimmer-grey2: theme('colors.gray.300') !default;
 
 .animated-shimmer {
   background: $shimmer-grey1
