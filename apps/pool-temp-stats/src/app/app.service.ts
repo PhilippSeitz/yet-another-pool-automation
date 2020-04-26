@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InfluxDB, FieldType } from 'influx';
+import { environment } from '../environments/environment';
 
 const influx = new InfluxDB({
-  host: 'pool-master',
+  host: environment.production ? 'influxdb' : 'pool-master',
   database: 'telegraf',
   schema: [
     {

@@ -456,6 +456,7 @@
         "build": {
           "builder": "@nrwl/node:build",
           "options": {
+            "webpackConfig": "webpack-server-prod.config.js",
             "outputPath": "dist/apps/pool-temp-stats",
             "main": "apps/pool-temp-stats/src/main.ts",
             "tsConfig": "apps/pool-temp-stats/tsconfig.app.json",
