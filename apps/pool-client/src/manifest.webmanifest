@@ -2,7 +2,7 @@
   "name": "Pool I/O",
   "short_name": "Pool I/0",
   "theme_color": "#ffffff",
-  "background_color": "#f7fafc",
+  "background_color": "#FDFDFE",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

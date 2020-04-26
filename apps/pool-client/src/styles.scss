@@ -4,12 +4,11 @@
 @import './shimmer.scss';
 
 html {
-  @apply h-full overflow-hidden text-gray-800;
-  background-color: #fdfdfe;
-  @apply text-gray-900;
+  @apply h-full overflow-hidden;
 
   body {
-    @apply h-full overflow-auto;
+    background-color: #fdfdfe;
+    @apply h-full overflow-auto text-gray-800;
   }
 
   * {
