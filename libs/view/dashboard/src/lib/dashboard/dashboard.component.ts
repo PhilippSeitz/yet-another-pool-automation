@@ -5,7 +5,7 @@ import { environment } from '@env/client';
 @Component({
   selector: 'pool-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
   controls$ = this.controlsFacade.allControls$;

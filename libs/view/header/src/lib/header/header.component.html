@@ -1,8 +1,8 @@
-<header class="px-6 pt-20 pb-4 sticky top-0 left-0 right-0 bg-gray-100 z-10">
-  <!-- <header class="px-4 py-4 shadow-sm fixed top-0 left-0 right-0 bg-white z-10"> -->
-
-  <h1 class="mx-auto font-bold text-2xl">Pool</h1>
-  <small class="text-gray-500 text-xs -mt-px block uppercase">
+<header class="px-6 pt-20 pb-4 top-0 left-0 right-0 z-10 text-center">
+  <h1 class="mx-auto text-36 font-light">
+    Pool <span class="text-gray-400 font-thin wider-space">I/O</span>
+  </h1>
+  <small class="text-gray-600 text-18 font-hairline mt-3 block lowercase">
     <span *ngIf="!(loaded$ | async)">loading...</span>
     <span *ngIf="(loaded$ | async) && (isOffline$ | async)">Offline</span>
     <span *ngIf="(loaded$ | async) && !(isOffline$ | async)">Online</span>

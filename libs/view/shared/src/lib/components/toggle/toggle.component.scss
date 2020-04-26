@@ -10,7 +10,8 @@
 
 input:checked ~ .toggle__dot {
   transform: translateX(100%);
-  @apply bg-blue-400;
+  // todo: real color variable
+  background-color: #01a274;
 }
 
 input:checked ~ .toggle__line {

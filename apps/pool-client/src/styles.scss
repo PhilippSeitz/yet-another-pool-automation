@@ -4,22 +4,17 @@
 @import './shimmer.scss';
 
 html {
-  @apply h-full overflow-hidden bg-gray-100 text-gray-800;
+  @apply h-full overflow-hidden text-gray-800;
+  background-color: #fdfdfe;
+  @apply text-gray-900;
 
   body {
     @apply h-full overflow-auto;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    @apply text-gray-700;
-  }
-
   * {
     user-select: none;
+    box-sizing: border-box;
   }
 
   *:focus {
@@ -29,6 +24,10 @@ html {
   -webkit-tap-highlight-color: transparent;
 
   .card {
-    @apply bg-white p-4 rounded shadow-sm;
+    @apply bg-white p-4 rounded shadow;
+  }
+
+  hr {
+    @apply border-gray-200;
   }
 }

@@ -1,21 +1,13 @@
 <div
-  class="card mb-6 flex flex-wrap justify-between items-center"
+  class="flex flex-wrap justify-between items-center py-5"
   (click)="click($event)"
 >
-  <div>
-    <h3
-      class="text-xs text-gray-500 m-0 uppercase font-thin"
-      [ngClass]="{ 'w-20 shimmer': loading }"
-    >
-      Status
-    </h3>
-    <h2
-      class="font-bold text-lg duration-200 ease-in transition-colors"
-      [ngClass]="{ 'w-48 shimmer': loading, 'text-gray-400': disabled }"
-    >
-      {{ loading ? 'Placeholder' : control?.name }}
-    </h2>
-  </div>
+  <h2
+    class="font-normal text-lg duration-200 ease-in transition-colors"
+    [ngClass]="{ 'w-48 shimmer': loading, 'text-gray-400': disabled }"
+  >
+    {{ loading ? 'Placeholder' : control?.name }}
+  </h2>
   <pool-toggle
     [checked]="control?.on"
     [disabled]="loading || disabled"
