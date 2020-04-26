@@ -1,4 +1,8 @@
 {
+  "/api/temperature/*": {
+    "target": "http://localhost:3334",
+    "logLevel": "debug"
+  },
   "/api/*": {
     "target": "http://localhost:3333",
     "logLevel": "debug"

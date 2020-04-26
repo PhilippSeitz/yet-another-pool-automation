@@ -52,6 +52,9 @@
     },
     "pool-temp": {
       "tags": []
+    },
+    "pool-temp-stats": {
+      "tags": []
     }
   }
 }

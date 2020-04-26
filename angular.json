@@ -445,6 +445,61 @@
           }
         }
       }
+    },
+    "pool-temp-stats": {
+      "root": "apps/pool-temp-stats",
+      "sourceRoot": "apps/pool-temp-stats/src",
+      "projectType": "application",
+      "prefix": "pool-temp-stats",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/pool-temp-stats",
+            "main": "apps/pool-temp-stats/src/main.ts",
+            "tsConfig": "apps/pool-temp-stats/tsconfig.app.json",
+            "assets": ["apps/pool-temp-stats/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/pool-temp-stats/src/environments/environment.ts",
+                  "with": "apps/pool-temp-stats/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "pool-temp-stats:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/pool-temp-stats/tsconfig.app.json",
+              "apps/pool-temp-stats/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/pool-temp-stats/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/pool-temp-stats/jest.config.js",
+            "tsConfig": "apps/pool-temp-stats/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
