@@ -12,12 +12,14 @@ describe('Dashboard Reducer', () => {
   beforeEach(() => {});
 
   describe('valid Dashboard actions', () => {
-    it('loadDashboardSuccess should return set the list of known Dashboard', () => {
+    it('loadCurrentTemperatureSuccess should return set the list of known Dashboard', () => {
       const dashboard = [
         createDashboardEntity('PRODUCT-AAA'),
         createDashboardEntity('PRODUCT-zzz')
       ];
-      const action = DashboardActions.loadDashboardSuccess({ dashboard });
+      const action = DashboardActions.loadCurrentTemperatureSuccess({
+        dashboard
+      });
 
       const result: State = reducer(initialState, action);
 

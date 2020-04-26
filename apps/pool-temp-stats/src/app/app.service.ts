@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { InfluxDB, FieldType, escape } from 'influx';
-
-const waterSensor = '28-0516a1d737ff';
+import { InfluxDB, FieldType } from 'influx';
 
 const influx = new InfluxDB({
   host: 'pool-master',
@@ -17,8 +15,6 @@ const influx = new InfluxDB({
   ]
 });
 
-const defaultRange = 'time >= now() - 24h';
-
 @Injectable()
 export class AppService {
   getLast24h() {
@@ -26,8 +22,7 @@ export class AppService {
     SELECT 
       round(mean("value") / 1000 * 10)/10 as "meanValue"
     FROM "autogen"."temp"
-    WHERE 
-      location = ${escape.stringLit(waterSensor)} 
+    WHERE
       AND time >= now() - 24h
     GROUP BY 
        time(5m),
@@ -40,11 +35,11 @@ export class AppService {
     return influx.query(`
     SELECT 
       round(mean("value") / 1000 * 10)/10 as "meanValue",
-      count(*) as "dataPoints",
+      count(value) as "dataPoints",
       round(min(value) / 1000 * 10)/10 as "min",
       round(max(value) / 1000 * 10)/10 as "max" 
     FROM "autogen"."temp"
-    WHERE location = ${escape.stringLit(waterSensor)} and time >= now() - 2m
+    WHERE time >= now() - 2m
     GROUP BY location
     Fill(null)
   `);

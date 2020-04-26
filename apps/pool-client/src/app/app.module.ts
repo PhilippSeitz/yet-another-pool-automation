@@ -11,6 +11,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StateControlsModule } from '@pool/view/state/controls';
 import { ViewHeaderModule } from '@pool/view/header';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ApiModule } from '../../../../libs/api/src/lib/api.module';
 
 const routes: Routes = [
   {
@@ -44,7 +45,8 @@ const routes: Routes = [
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerImmediately'
-    })
+    }),
+    ApiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,21 +6,29 @@ import * as fromDashboard from './dashboard.reducer';
 import * as DashboardActions from './dashboard.actions';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 import { timer } from 'rxjs';
+import { TemperatureService } from '@pool/api';
 
 @Injectable()
 export class DashboardEffects {
-  loadDashboard$ = createEffect(() =>
+  loadCurrentTemperature$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(DashboardActions.loadDashboard),
+      ofType(DashboardActions.loadCurrentTemperature),
       fetch({
         run: action => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
-          return DashboardActions.loadDashboardSuccess({ dashboard: [] });
+          return this.temperatureService
+            .getCurrentTemperature()
+            .pipe(
+              map(currentTemperatures =>
+                DashboardActions.loadCurrentTemperatureSuccess({
+                  currentTemperatures
+                })
+              )
+            );
         },
 
         onError: (action, error) => {
           console.error('Error', error);
-          return DashboardActions.loadDashboardFailure({ error });
+          return DashboardActions.loadCurrentTemperatureFailure({ error });
         }
       })
     )
@@ -31,12 +39,15 @@ export class DashboardEffects {
       ofType(DashboardActions.startPolling),
       switchMap(() =>
         timer(0, 30 * 1000).pipe(
-          map(() => DashboardActions.loadDashboard()),
+          map(() => DashboardActions.loadCurrentTemperature()),
           takeUntil(this.actions$.pipe(ofType(DashboardActions.endPolling)))
         )
       )
     )
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(
+    private actions$: Actions,
+    private temperatureService: TemperatureService
+  ) {}
 }

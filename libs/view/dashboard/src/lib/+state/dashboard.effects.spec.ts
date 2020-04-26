@@ -29,15 +29,15 @@ describe('DashboardEffects', () => {
     effects = TestBed.get(DashboardEffects);
   });
 
-  describe('loadDashboard$', () => {
+  describe('loadCurrentTemperature$', () => {
     it('should work', () => {
-      actions = hot('-a-|', { a: DashboardActions.loadDashboard() });
+      actions = hot('-a-|', { a: DashboardActions.loadCurrentTemperature() });
 
       const expected = hot('-a-|', {
-        a: DashboardActions.loadDashboardSuccess({ dashboard: [] })
+        a: DashboardActions.loadCurrentTemperatureSuccess({ dashboard: [] })
       });
 
-      expect(effects.loadDashboard$).toBeObservable(expected);
+      expect(effects.loadCurrentTemperature$).toBeObservable(expected);
     });
   });
 });

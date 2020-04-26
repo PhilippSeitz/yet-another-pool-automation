@@ -4,6 +4,8 @@ import {
   State,
   DashboardPartialState
 } from './dashboard.reducer';
+import { Sensor } from '@pool/data';
+import { Props } from '@ngrx/store/src/models';
 
 // Lookup the 'Dashboard' feature state managed by NgRx
 export const getDashboardState = createFeatureSelector<
@@ -19,4 +21,10 @@ export const getDashboardLoaded = createSelector(
 export const getDashboardError = createSelector(
   getDashboardState,
   (state: State) => state.error
+);
+
+export const getCurrentTemp = createSelector(
+  getDashboardState,
+  (state: State, props: { location: Sensor }) =>
+    state.currentTemperatures.find(temp => temp.location === props.location)
 );

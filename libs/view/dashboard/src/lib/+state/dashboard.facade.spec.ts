@@ -72,7 +72,7 @@ describe('DashboardFacade', () => {
         expect(list.length).toBe(0);
         expect(isLoaded).toBe(false);
 
-        facade.dispatch(DashboardActions.loadDashboard());
+        facade.dispatch(DashboardActions.loadCurrentTemperature());
 
         list = await readFirst(facade.allDashboard$);
         isLoaded = await readFirst(facade.loaded$);
@@ -87,7 +87,7 @@ describe('DashboardFacade', () => {
     });
 
     /**
-     * Use `loadDashboardSuccess` to manually update list
+     * Use `loadCurrentTemperatureSuccess` to manually update list
      */
     it('allDashboard$ should return the loaded list; and loaded flag == true', async done => {
       try {
@@ -98,7 +98,7 @@ describe('DashboardFacade', () => {
         expect(isLoaded).toBe(false);
 
         facade.dispatch(
-          DashboardActions.loadDashboardSuccess({
+          DashboardActions.loadCurrentTemperatureSuccess({
             dashboard: [
               createDashboardEntity('AAA'),
               createDashboardEntity('BBB')

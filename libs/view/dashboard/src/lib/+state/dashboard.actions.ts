@@ -1,16 +1,19 @@
 import { createAction, props } from '@ngrx/store';
+import { CurrentTemperature } from '@pool/data';
 
-export const loadDashboard = createAction('[Dashboard] Load Dashboard');
+export const loadCurrentTemperature = createAction(
+  '[Dashboard] Load Dashboard'
+);
 
 export const startPolling = createAction('[Dashboard] Start Polling');
 export const endPolling = createAction('[Dashboard] End Polling');
 
-export const loadDashboardSuccess = createAction(
-  '[Dashboard] Load Dashboard Success',
-  props<{ dashboard: any[] }>()
+export const loadCurrentTemperatureSuccess = createAction(
+  '[Dashboard] Load Current Temperature Success',
+  props<{ currentTemperatures: CurrentTemperature[] }>()
 );
 
-export const loadDashboardFailure = createAction(
-  '[Dashboard] Load Dashboard Failure',
+export const loadCurrentTemperatureFailure = createAction(
+  '[Dashboard] Load Current Temperature Failure',
   props<{ error: any }>()
 );
