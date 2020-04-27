@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { DashboardFacade } from '../../+state/dashboard.facade';
 
 @Component({
   selector: 'pool-temperature-graph',
@@ -7,7 +8,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TemperatureGraphComponent implements OnInit {
-  constructor() {}
+  history$ = this.dashboardFacade.poolTemperatureHistory$;
+
+  constructor(private dashboardFacade: DashboardFacade) {}
 
   ngOnInit(): void {}
 }

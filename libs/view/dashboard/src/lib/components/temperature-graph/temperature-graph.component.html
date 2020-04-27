@@ -1,1 +1,8 @@
-<div class="display-card flex bg-gradient-b-green"></div>
+<div class="display-card  flex flex-col bg-gradient-b-green">
+  <div class="h-full"></div>
+  <div class="flex font-thin text-18 align-bottom flex-row justify-between">
+    <div><small>min. </small>{{ (history$ | async)?.min }}°</div>
+    <div><small>avg. </small>{{ (history$ | async)?.meanValue }}°</div>
+    <div><small>min. </small>{{ (history$ | async)?.max }}°</div>
+  </div>
+</div>

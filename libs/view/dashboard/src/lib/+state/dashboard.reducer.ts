@@ -1,14 +1,15 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as DashboardActions from './dashboard.actions';
-import { CurrentTemperature } from '@pool/data';
+import { TemperatureData, TemperatureSnapshot } from '@pool/data';
 
 export const DASHBOARD_FEATURE_KEY = 'dashboard';
 
 export interface State {
   loaded: boolean; // has the Dashboard list been loaded
-  currentTemperatures: CurrentTemperature[];
+  currentTemperatures: TemperatureSnapshot[];
+  historyTemperatures: TemperatureSnapshot[];
+  historyTemperaturesValues: TemperatureData[];
   error?: string | null; // last none error (if any)
 }
 
@@ -18,7 +19,9 @@ export interface DashboardPartialState {
 
 export const initialState: State = {
   loaded: false,
-  currentTemperatures: []
+  currentTemperatures: [],
+  historyTemperatures: [],
+  historyTemperaturesValues: []
 };
 
 const dashboardReducer = createReducer(
@@ -32,6 +35,14 @@ const dashboardReducer = createReducer(
     (state, { currentTemperatures }) => ({
       ...state,
       currentTemperatures
+    })
+  ),
+  on(
+    DashboardActions.loadHistoryTemperatureSuccess,
+    (state, { historyTemperatures, values }) => ({
+      ...state,
+      historyTemperatures,
+      historyTemperaturesValues: values
     })
   )
 );

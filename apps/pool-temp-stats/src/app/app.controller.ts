@@ -11,6 +11,11 @@ export class AppController {
     return this.appService.getLast24h();
   }
 
+  @Get('24h')
+  getLast24h() {
+    return this.appService.getMinMax24();
+  }
+
   @Get('now')
   getCurrentTemperature() {
     return this.appService.getCurrentTemperature();

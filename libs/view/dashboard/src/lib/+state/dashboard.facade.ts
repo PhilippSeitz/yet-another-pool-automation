@@ -14,6 +14,14 @@ export class DashboardFacade {
     select(DashboardSelectors.getCurrentTemp, { location: Sensor.POOL })
   );
 
+  poolTemperatureHistory$ = this.store.pipe(
+    select(DashboardSelectors.getHistoryTemp, { location: Sensor.POOL })
+  );
+
+  poolTemperatureHistoryValues$ = this.store.pipe(
+    select(DashboardSelectors.getHistoryTempValues, { location: Sensor.POOL })
+  );
+
   constructor(private store: Store<fromDashboard.DashboardPartialState>) {}
 
   dispatch(action: Action) {

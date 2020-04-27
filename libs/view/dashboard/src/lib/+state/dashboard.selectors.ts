@@ -28,3 +28,17 @@ export const getCurrentTemp = createSelector(
   (state: State, props: { location: Sensor }) =>
     state.currentTemperatures.find(temp => temp.location === props.location)
 );
+
+export const getHistoryTemp = createSelector(
+  getDashboardState,
+  (state: State, props: { location: Sensor }) =>
+    state.historyTemperatures.find(temp => temp.location === props.location)
+);
+
+export const getHistoryTempValues = createSelector(
+  getDashboardState,
+  (state: State, props: { location: Sensor }) =>
+    state.historyTemperaturesValues.filter(
+      temp => temp.location === props.location
+    )
+);
