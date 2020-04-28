@@ -6,8 +6,26 @@
   <div
     class="flex flex-none font-thin text-18 align-bottom flex-row justify-between"
   >
-    <div><small>min. </small>{{ (history$ | async)?.min }}°</div>
-    <div><small>avg. </small>{{ (history$ | async)?.meanValue }}°</div>
-    <div><small>max. </small>{{ (history$ | async)?.max }}°</div>
+    <div>
+      <img
+        class="inline h-4 leading-6 mr-1"
+        alt="min"
+        src="/assets/svg/min.svg"
+      />{{ (history$ | async)?.min }}°
+    </div>
+    <div>
+      <img
+        class="inline h-4 leading-6 mr-1"
+        alt="average"
+        src="/assets/svg/average.svg"
+      />{{ (history$ | async)?.meanValue }}°
+    </div>
+    <div>
+      <img
+        class="inline h-4 leading-6 mr-1"
+        alt="max"
+        src="/assets/svg/max.svg"
+      />{{ (history$ | async)?.max }}°
+    </div>
   </div>
 </div>
