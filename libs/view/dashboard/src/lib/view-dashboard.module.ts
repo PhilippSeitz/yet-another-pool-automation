@@ -10,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import * as fromDashboard from './+state/dashboard.reducer';
 import { DashboardEffects } from './+state/dashboard.effects';
 import { DashboardFacade } from './+state/dashboard.facade';
+import { GraphComponent } from './components/graph/graph.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { DashboardFacade } from './+state/dashboard.facade';
   declarations: [
     DashboardComponent,
     CurrentTemperatureComponent,
-    TemperatureGraphComponent
+    TemperatureGraphComponent,
+    GraphComponent
   ],
   providers: [DashboardFacade]
 })

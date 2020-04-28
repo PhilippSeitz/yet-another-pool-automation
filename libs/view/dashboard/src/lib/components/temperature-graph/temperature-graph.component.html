@@ -1,8 +1,13 @@
-<div class="display-card  flex flex-col bg-gradient-b-green">
-  <div class="h-full"></div>
-  <div class="flex font-thin text-18 align-bottom flex-row justify-between">
+<div class="display-card flex flex-shrink-0 flex-col bg-gradient-b-green">
+  <div class="flex flex-grow relative">
+    <pool-graph [data]="values$ | async"></pool-graph>
+  </div>
+
+  <div
+    class="flex flex-none font-thin text-18 align-bottom flex-row justify-between"
+  >
     <div><small>min. </small>{{ (history$ | async)?.min }}°</div>
     <div><small>avg. </small>{{ (history$ | async)?.meanValue }}°</div>
-    <div><small>min. </small>{{ (history$ | async)?.max }}°</div>
+    <div><small>max. </small>{{ (history$ | async)?.max }}°</div>
   </div>
 </div>
