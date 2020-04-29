@@ -1,7 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { GpioPinsService } from '../../services/gpio-pins/gpio-pins.service';
-import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
 
 @Controller('controls')
 export class ControlsController {
@@ -9,6 +7,6 @@ export class ControlsController {
 
   @Get()
   getControls() {
-    return of(this.gpio.controls).pipe(delay(5000));
+    return this.gpio.controls;
   }
 }

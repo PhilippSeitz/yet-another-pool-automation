@@ -58,6 +58,9 @@
     },
     "api": {
       "tags": []
+    },
+    "server-mqtt": {
+      "tags": []
     }
   }
 }

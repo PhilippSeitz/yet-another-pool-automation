@@ -25,7 +25,8 @@
       "@env/server": ["apps/pool-server/src/environments/environment"],
       "@env/client": ["apps/pool-client/src/environments/environment"],
       "@pool/view/header": ["libs/view/header/src/index.ts"],
-      "@pool/api": ["libs/api/src/index.ts"]
+      "@pool/api": ["libs/api/src/index.ts"],
+      "@pool/server/mqtt": ["libs/server/mqtt/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

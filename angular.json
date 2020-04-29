@@ -533,6 +533,32 @@
           "style": "scss"
         }
       }
+    },
+    "server-mqtt": {
+      "root": "libs/server/mqtt",
+      "sourceRoot": "libs/server/mqtt/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/server/mqtt/tsconfig.lib.json",
+              "libs/server/mqtt/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/server/mqtt/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/server/mqtt/jest.config.js",
+            "tsConfig": "libs/server/mqtt/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
