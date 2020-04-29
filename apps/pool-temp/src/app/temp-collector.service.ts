@@ -1,16 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
 import * as fs from 'fs';
-import * as mqtt from 'mqtt';
-
-const client = mqtt.connect('mqtt://mqtt:1883', {
-  clean: false,
-  clientId: 'tempSender'
-});
+import { MqttClientService } from '@pool/server/mqtt';
 
 @Injectable()
 export class TempCollectorService {
-  constructor(private logger: Logger) {
+  constructor(private logger: Logger, private mqttClient: MqttClientService) {
     this.logger.setContext('temp');
   }
 
@@ -20,10 +15,9 @@ export class TempCollectorService {
     if (data.indexOf('YES') !== -1 && match) {
       const temp = match[1];
       this.logger.debug(temp);
-      client.publish(
+      this.mqttClient.publish(
         'temp',
-        `temp,location=${name} value=${temp} ${Date.now()}000000`,
-        { qos: 1 }
+        `temp,location=${name} value=${temp} ${Date.now()}000000`
       );
     } else {
       this.logger.error(`status not YES - ${name}`);

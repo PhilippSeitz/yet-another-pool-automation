@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Gpio } from 'onoff';
+import { MqttClientService } from '@pool/server/mqtt';
 
 const elements = [
   {
@@ -36,20 +37,34 @@ const elements = [
   }
 ];
 
+const TOPIC = 'gpio';
+
 @Injectable()
 export class GpioService {
   gpioMap = new Map<number, Gpio>();
-  constructor() {
+  constructor(private mqttClient: MqttClientService) {
     elements.forEach(element => {
       this.gpioMap.set(element.pin, new Gpio(element.pin, 'out'));
+      this.mqttClient.publish(
+        TOPIC,
+        `gpio,location=${element.pin} value=false ${Date.now()}000000`
+      );
     });
   }
 
   on(id: number) {
+    this.mqttClient.publish(
+      TOPIC,
+      `gpio,location=${id} value=true ${Date.now()}000000`
+    );
     return this.gpioMap.get(id).write(1);
   }
 
   off(id: number) {
+    this.mqttClient.publish(
+      TOPIC,
+      `gpio,location=${id} value=false ${Date.now()}000000`
+    );
     return this.gpioMap.get(id).write(0);
   }
 }

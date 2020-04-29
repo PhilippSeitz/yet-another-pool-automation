@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, DynamicModule } from '@nestjs/common';
 import {
   MqttClientService,
   CLIENT_ID
@@ -6,9 +6,9 @@ import {
 
 @Module({})
 export class ServerMqttModule {
-  public static forRoot(clientId: string) {
+  public static forRoot(clientId: string): DynamicModule {
     return {
-      ngModule: ServerMqttModule,
+      module: ServerMqttModule,
       providers: [MqttClientService, { provide: CLIENT_ID, useValue: clientId }]
     };
   }
