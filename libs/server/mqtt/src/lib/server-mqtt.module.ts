@@ -9,7 +9,11 @@ export class ServerMqttModule {
   public static forRoot(clientId: string): DynamicModule {
     return {
       module: ServerMqttModule,
-      providers: [MqttClientService, { provide: CLIENT_ID, useValue: clientId }]
+      providers: [
+        MqttClientService,
+        { provide: CLIENT_ID, useValue: clientId }
+      ],
+      exports: [MqttClientService]
     };
   }
 }
